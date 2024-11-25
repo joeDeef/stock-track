@@ -21,6 +21,7 @@ La documentación proporciona información detallada sobre:
 
 ## Estructura
 
+- **/organizacion**: Documentación sobre como trabaja el grupo y los estandares utilizados.
 - **/deploy**: Guías paso a paso para configurar el proyecto.
 - **/requerimientos**: Requerimientos del cliente para el proyecto.
 - **/pruebas**: Casos de prueba para el proyecto basado en los requerimientos.
