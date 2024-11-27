@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}  <!-- Cargamos las etiquetas estáticas -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="color-cuatro pt-3">
+        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">Comprar Acciones</h3>
+    </div>
+    <section class="container-compra d-flex color-cuatro pt-5">
+        <!-- Columna Izquierda: Formulario de Login -->
+        <form class="info-login flex-column pl-5">
+            <div>
+                <input type="text" id="cantidad" class="input-compra" placeholder="Cantidad de acciones">
+        
+                <input type="email" id="presio" class="input-compra" placeholder="Precio de acción">
+            
+                <input type="tel" id="costo" class="input-compra" placeholder="Costo total">
+            </div>
+            
+            <div class="boton color-primario color-basico-fw pa-1">
+                <a class="color-basico-fb f-b" href="{% url 'usuarios:login' %}">Comprar</a>
+            </div>
+        </form>
+    
+        <!-- Columna Derecha: Imagen -->
+        <div>
+            
+        </div>
+    </section>
+    {% include 'mensajes.html' %}
+    <script src="{% static 'js/mensajes.js' %}"></script>
+</body>
+</html>

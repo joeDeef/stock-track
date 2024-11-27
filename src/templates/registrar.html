@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}  <!-- Cargamos las etiquetas estáticas -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="container-info d-flex">
+        <!-- Columna Izquierda: Formulario de Login -->
+        <div class="imagen-login">
+            <img src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
+        </div>
+        <!-- Columna Derecha: Imagen -->
+        <div class="info-login d-flex flex-column color-terciario">
+            <div class="logo-completo"></div>
+                <h2 class="pb-3 color-basico-fw">Registro</h2>
+                <form class="flex-column pb-1" method="post" action="{% url 'usuarios:crearCuenta' %}">
+                    {% csrf_token %}
+                    <input name="nombre" id="nombre" class="input-registro" placeholder="Nombre">
+                    <input type="email" name="email" id="email" class="input-registro" placeholder="Email">
+                    <input name="telefono" id="telf" class="input-registro" placeholder="Telefono">
+                    <input type="password" name="password" id="pass" class="input-registro" placeholder="Contraseña">
+                    <div class="boton pa-1 borde-1">
+                        <button type="submit" class="color-basico-fw f-b">Crear Cuenta</button>
+                    </div>
+                </form>
+        </div>
+    </section>
+
+    {% include 'mensajes.html' %}
+
+    <script src="{% static 'js/mensajes.js' %}"></script>
+
+</body>
+</html>
