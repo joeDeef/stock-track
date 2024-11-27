@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from main.views import inicio  # Importamos la vista desde la aplicación "main"
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='inicio'),  # La ruta raíz usará la vista "inicio"
+    path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
+    path('', TemplateView.as_view(template_name='index.html'), name='inicio'),  # Ruta para el index
+    path('registrar/', TemplateView.as_view(template_name='registrar.html'), name='registrar'),
 ]

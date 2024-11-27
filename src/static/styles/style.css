@@ -1,10 +1,208 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #999;
-    margin: 0;
-    padding: 20px;
+/* Fonts */
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('../fonts/Montserrat-Bold.otf') format('opentype');
 }
 
-h1 {
-    color: #0056b3;
+@font-face {
+    font-family: 'SFUIDisplayLight';
+    src: url('../fonts/sf-ui-display-light.otf') format('opentype');
 }
+
+/* Preset */
+body { margin: 0; padding: 0; }
+* { margin: 0}
+
+/* Fuentes */
+h2 {
+    font-family: 'MontserratBold';
+    font-size: 40px;
+}
+h3 {
+    font-family: 'MontserratBold';
+    font-size: 19px;
+}
+.letra-mediana {
+    font-family: 'MontserratBold';
+    font-size: 19px;
+}
+.letra-normal {
+    font-family: 'MontserratBold';
+    font-size: 14px;
+}
+p {
+    font-family: 'SFUIDisplayLight';
+    font-size: 16px;
+}
+a {
+    font-family: 'MontserratBold';
+    font-size: 14px;
+    text-decoration: none;
+}
+.mayusculas {
+    text-transform: uppercase;
+}
+
+/* Colores */
+.color-primario { background-color: #3193e2; }
+.color-secundario { background-color: #d8d8d8; }
+.color-terciario{background-color: #110f1c;}
+.color-doble {
+    background: linear-gradient(160deg, #110f1c, #3b4561); /* Gradiente */
+}
+/*fuentes*/
+.color-primario-fuente { color: #176FA6; }
+.color-secundario-fuente { color: #707070; }
+.color-terciario-fuente { color: #d8d8d8; }
+.color-basico-fb { color: black; }
+.color-basico-fw { color: white; }
+/*tamaño fuentes*/
+.f-b{font-size: 16px;;}
+/* Espaciados */
+.pt-1 { padding-top: 10px; }
+.ptb-1 { padding: 10px 0; }
+.pb-1 { padding-bottom: 10px; }
+.pl-1 { padding-left: 10px; }
+.pr-1 { padding-right: 10px; }
+.pa-1 { padding: 10px 10px; }
+.gap-1 { gap: 10px; }
+
+.pb-3{padding-bottom: 30px;}
+.pl-5{padding-left: 50px;}
+.pa-5{padding: 50px;}
+.pt-5{padding-top: 50px;}
+/* Disposiciones */
+.t-centrado { text-align: center; }
+.t-derecha { text-align: right; }
+
+/* Display */
+.d-flex { display: flex; }
+.d-ib { display: inline-block; }
+.justify-sb { justify-content: space-between; }
+
+/* Float */
+.f-left { float: left; }
+.f-right { float: right; }
+
+/* Bordes */
+.borde-1 {
+    border: 1.5px solid black;
+}
+
+/* Header */
+header {
+    height: 50px;
+}
+.barra {
+    align-items: center;
+    height: 100%;
+}
+.barra ul {
+    list-style-type: none;
+}
+
+
+/* Recuadros y Cartas */
+.logo {
+    width: 50px;
+    height: 44px;
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% auto;
+    margin: 0 auto;
+}
+.logo-completo{
+    height: 300px;
+    width: 300px;
+    background-image: url(../img/finac-blanco.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% auto;
+    margin: 0 auto;
+}
+.logo-completo-black{
+    height: 300px;
+    width: 300px;
+    background-image: url(../img/finac-negro.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% auto;
+    margin: 0 auto;
+}
+.container-info {
+    width: 100%;
+    height: 100%;
+}
+.boton {
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+.card {
+    width: 180px;
+    border: 1px solid #707070;
+    border-radius: 0px 0px 15px 15px;
+}
+.circulo {
+    border-radius: 50%;
+}
+
+
+/* Sección Principal */
+.info-texto {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.info-imagen {
+    display: flex;
+    justify-content: center; /* Centra la imagen dentro del contenedor */
+    align-items: center; /* Centra la imagen verticalmente */
+}
+
+.info-login {
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.imagen-login {
+    width: 50%; /* Ocupa la mitad del ancho */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente la imagen */
+    align-items: center; /* Centra verticalmente la imagen */
+}
+
+
+/* Contenedor Principal */
+.container-info {
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+}
+
+/* Columna Izquierda: Login */
+.input-login {
+    width: 100%; /* Ocupa todo el ancho del formulario */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.input-registro {
+    width: 70%; /* Ocupa todo el ancho del formulario */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Columna Derecha: Imagen */
+.imagen-pantalla {
+    width: 100%; /* La imagen ocupa el 80% del contenedor */
+    height: 100%; /* Mantiene proporciones */
+}
+/* Animaciones */

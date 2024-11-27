@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}  <!-- Cargamos las etiquetas estáticas -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+    <header class="color-secundario d-flex justify-sb">
+        <div class="barra f-left d-flex pl-1">
+            <div class="logo"></div>
+            <ul class="letra-normal pl-1 d-flex">
+                <li class="pa-1"><a class="color-basico-fb" href="{% url 'inicio' %}">Inicio</a></li>
+                <li class="pa-1"><a class="color-basico-fb" href="#">Nosotros</a></li>
+            </ul>
+        </div>
+        <div class="barra f-right d-flex pr-1 gap-1">
+            <div class="boton color-primario  pa-1">
+                <a class="color-basico-fw" href="#">Inicia Sesión</a>
+            </div>
+            <div class="boton pa-1 borde-1">
+                <a class="color-basico-fb" href="#">Regístrate</a>
+            </div>
+        </div>
+    </header>
+    <section class="container-info d-flex">
+        <!-- Columna Izquierda: Formulario de Login -->
+        <div class="imagen-login">
+            <img src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
+        </div>
+        <!-- Columna Derecha: Imagen -->
+        <div class="info-login d-flex flex-column color-terciario">
+            <div class="logo-completo"></div>
+            <h2 class="pb-3 color-basico-fw">Registro</h2>
+            <form class="flex-column pb-1">
+                <input  id="nombre" class="input-registro" placeholder="Nombre">
+                <input type="email" id="Email" class="input-registro" placeholder="Email">
+                <input  id="telf" class="input-registro" placeholder="Telefono">
+                <input  type="password" id="pass" class="input-registro" placeholder="Telefono">
+            </form>
+            <div class="boton color-primario color-basico-fw pa-1">
+                <a class="color-basico-fb f-b" href="{% url 'login' %}">Crear Cuenta</a>
+            </div>
+        </div>
+       
+    </section>
+    
+</body>
+</html>
