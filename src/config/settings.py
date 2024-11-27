@@ -41,6 +41,8 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'main',  # Registramos la aplicación
+    'usuarios',
+    'compras',
 ]
 
 THIRD_APPS = [
@@ -109,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'usuarios.UsuarioPersonalizado'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

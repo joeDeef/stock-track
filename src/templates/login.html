@@ -21,7 +21,7 @@
                 <a class="color-basico-fw" href="#">Inicia Sesión</a>
             </div>
             <div class="boton pa-1 borde-1">
-                <a class="color-basico-fb" href="{% url 'registrar' %}">Regístrate</a>
+                <a class="color-basico-fw f-b" href="{% url 'usuarios:signup' %}">Regístrate</a>
             </div>
         </div>
     </header>
@@ -30,13 +30,16 @@
         <div class="info-login d-flex flex-column">
             <div class="logo-completo-black"></div>
             <h2 class="pb-3">Iniciar Sesión</h2>
-            <form class="flex-column pb-1">
-                <input type="email" id="email" class="input-login" placeholder="Email">
-                <input type="password" id="password" class="input-login" placeholder="Contraseña">
+
+            <form method="post" action="{% url 'usuarios:IniciarSesion' %}" class="flex-column pb-1">
+                {% csrf_token %}
+                <input type="email" name="email" id="email" class="input-login" placeholder="Email" required>
+                <input type="password" name="password" id="password" class="input-login" placeholder="Contraseña" required>
+                <button type="submit" class="boton color-primario color-basico-fw pa-1">
+                    <span class="color-basico-fb f-b">Ingresar</span>
+                </button>
             </form>
-            <div class="boton color-primario color-basico-fw pa-1">
-                <a class="color-basico-fb f-b" href="{% url 'comprar' %}">Ingresar</a>
-            </div>
+            
         </div>
     
         <!-- Columna Derecha: Imagen -->
@@ -44,6 +47,9 @@
             <img src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
         </div>
     </section>
-    
+
+    {% include 'mensajes.html' %}
+    <script src="{% static 'js/mensajes.js' %}"></script>
+
 </body>
 </html>

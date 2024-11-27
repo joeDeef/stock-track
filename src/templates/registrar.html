@@ -18,10 +18,10 @@
         </div>
         <div class="barra f-right d-flex pr-1 gap-1">
             <div class="boton color-primario  pa-1">
-                <a class="color-basico-fw" href="#">Inicia Sesión</a>
+                <a class="color-basico-fw" href="{% url 'usuarios:login' %}">Inicia Sesión</a>
             </div>
             <div class="boton pa-1 borde-1">
-                <a class="color-basico-fb" href="#">Regístrate</a>
+                <a class="color-basico-fw" href="{% url 'usuarios:signup' %}">Regístrate</a>
             </div>
         </div>
     </header>
@@ -33,19 +33,23 @@
         <!-- Columna Derecha: Imagen -->
         <div class="info-login d-flex flex-column color-terciario">
             <div class="logo-completo"></div>
-            <h2 class="pb-3 color-basico-fw">Registro</h2>
-            <form class="flex-column pb-1">
-                <input  id="nombre" class="input-registro" placeholder="Nombre">
-                <input type="email" id="Email" class="input-registro" placeholder="Email">
-                <input  id="telf" class="input-registro" placeholder="Telefono">
-                <input  type="password" id="pass" class="input-registro" placeholder="Telefono">
-            </form>
-            <div class="boton color-primario color-basico-fw pa-1">
-                <a class="color-basico-fb f-b" href="{% url 'login' %}">Crear Cuenta</a>
-            </div>
+                <h2 class="pb-3 color-basico-fw">Registro</h2>
+                <form class="flex-column pb-1" method="post" action="{% url 'usuarios:crearCuenta' %}">
+                    {% csrf_token %}
+                    <input name="nombre" id="nombre" class="input-registro" placeholder="Nombre">
+                    <input type="email" name="email" id="email" class="input-registro" placeholder="Email">
+                    <input name="telefono" id="telf" class="input-registro" placeholder="Telefono">
+                    <input type="password" name="password" id="pass" class="input-registro" placeholder="Contraseña">
+                    <div class="boton pa-1 borde-1">
+                        <button type="submit" class="color-basico-fw f-b">Crear Cuenta</button>
+                    </div>
+                </form>
         </div>
-       
     </section>
-    
+
+    {% include 'mensajes.html' %}
+
+    <script src="{% static 'js/mensajes.js' %}"></script>
+
 </body>
 </html>
