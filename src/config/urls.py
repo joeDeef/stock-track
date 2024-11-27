@@ -25,4 +25,5 @@ urlpatterns = [
     path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
     path('', TemplateView.as_view(template_name='index.html'), name='inicio'),  # Ruta para el index
     path('registrar/', TemplateView.as_view(template_name='registrar.html'), name='registrar'),
+    path('comprar/', TemplateView.as_view(template_name='comprar.html'), name='comprar'),
 ]

@@ -47,6 +47,7 @@ a {
 .color-primario { background-color: #3193e2; }
 .color-secundario { background-color: #d8d8d8; }
 .color-terciario{background-color: #110f1c;}
+.color-cuatro{background-color: #2d2d2f;}
 .color-doble {
     background: linear-gradient(160deg, #110f1c, #3b4561); /* Gradiente */
 }
@@ -58,6 +59,7 @@ a {
 .color-basico-fw { color: white; }
 /*tamaño fuentes*/
 .f-b{font-size: 16px;;}
+.f-xb{font-size: 22px;}
 /* Espaciados */
 .pt-1 { padding-top: 10px; }
 .ptb-1 { padding: 10px 0; }
@@ -67,7 +69,9 @@ a {
 .pa-1 { padding: 10px 10px; }
 .gap-1 { gap: 10px; }
 
+.pt-3{ padding-top: 30px; }
 .pb-3{padding-bottom: 30px;}
+.pt-3{padding-top: 30px;}
 .pl-5{padding-left: 50px;}
 .pa-5{padding: 50px;}
 .pt-5{padding-top: 50px;}
@@ -130,10 +134,8 @@ header {
     background-size: 100% auto;
     margin: 0 auto;
 }
-.container-info {
-    width: 100%;
-    height: 100%;
-}
+
+
 .boton {
     border-radius: 15px;
     text-align: center;
@@ -145,6 +147,11 @@ header {
     border-radius: 0px 0px 15px 15px;
 }
 .circulo {
+    border-radius: 50%;
+    background-image: url(../img/usuario.png);
+    background-position: 50%;
+    background-size: 100% auto;
+    margin:0px auto;
     border-radius: 50%;
 }
 
@@ -169,6 +176,10 @@ header {
     align-items: center;
     text-align: center;
 }
+.info-compra{
+    width: 50%;
+    width: auto;
+}
 .imagen-login {
     width: 50%; /* Ocupa la mitad del ancho */
     display: flex;
@@ -181,12 +192,23 @@ header {
 .container-info {
     width: 100%;
     height: 100vh; /* Ocupa toda la altura de la pantalla */
-    display: flex;
 }
 
+.container-compra{
+    width: 100%;
+    height: 100vh;
+     /* Ocupa toda la altura de la pantalla */
+}
 /* Columna Izquierda: Login */
 .input-login {
     width: 100%; /* Ocupa todo el ancho del formulario */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.input-compra {
+    width: 70%; /* Ocupa todo el ancho del formulario */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
