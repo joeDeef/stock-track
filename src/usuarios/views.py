@@ -5,10 +5,10 @@ from django.contrib import messages  # Para mostrar mensajes de éxito o error
 from usuarios.models import UsuarioPersonalizado
 from django.contrib.auth import authenticate, login
 
-def login(request):
+def get_login(request):
     return render(request, 'login.html')
 
-def signup(request):
+def get_signup(request):
     return render(request, 'registrar.html')
 
 def iniciar_sesion(request):
@@ -16,23 +16,16 @@ def iniciar_sesion(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        try:
-            # Intentar obtener el usuario por el email
-            user = UsuarioPersonalizado.objects.get(email=email)
+        # Autenticar al usuario por email
+        user = authenticate(request, username=email, password=password)
 
-            # Verificar la contraseña
-            if user.password == password:
-                # La contraseña es correcta, iniciar sesión
-                #login(request, user)
-                messages.success(request, 'Inicio de sesión exitoso.')
-                return redirect('/compras/')
-            else:
-                # Contraseña incorrecta
-                messages.error(request, 'Correo electrónico o contraseña incorrectos.')
-                return redirect('usuarios:login')
-        
-        except UsuarioPersonalizado.DoesNotExist:
-            # El usuario no existe
+        if user is not None:
+            # Si la autenticación es exitosa, inicia sesión
+            login(request, user)
+            messages.success(request, 'Inicio de sesión exitoso.')
+            return redirect('/compras/')
+        else:
+            # Si la autenticación falla
             messages.error(request, 'Correo electrónico o contraseña incorrectos.')
             return redirect('usuarios:login')
 
@@ -49,29 +42,31 @@ def crear_cuenta(request):
         # Validar que los campos obligatorios no estén vacíos
         if not nombre_completo or not email or not password:
             messages.error(request, 'Los campos Nombre Completo, Email y Contraseña son obligatorios.')
-            return redirect('usuarios:signup') 
+            return redirect('usuarios:signup')
 
         # Verificar si el email ya está registrado
         if UsuarioPersonalizado.objects.filter(email=email).exists():
             messages.error(request, 'El email ya está registrado.')
-            return redirect('usuarios:signup') 
+            return redirect('usuarios:signup')
 
         try:
             # Crear una nueva instancia de UsuarioPersonalizado
             usuario = UsuarioPersonalizado(
                 nombres=nombre_completo,
-                username=nombre_completo,
+                username=email,  # Usa el email como username si lo prefieres
                 email=email,
-                telefono=telefono,
-                password=password
+                telefono=telefono
             )
+            
+            # Cifrar la contraseña antes de guardarla
+            usuario.set_password(password)
             
             # Guardar el usuario en la base de datos
             usuario.save()
 
             # Mensaje de éxito
             messages.success(request, 'Cuenta creada exitosamente.')
-            return redirect('usuarios:login') 
+            return redirect('usuarios:login')
 
         except Exception as e:
             # Si ocurre un error al guardar, muestra un mensaje de error

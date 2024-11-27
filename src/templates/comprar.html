@@ -8,23 +8,9 @@
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 </head>
 <body>
-    <header class="color-secundario d-flex justify-sb">
-        <div class="barra f-left d-flex pl-1">
-            <div class="logo"></div>
-            <ul class="letra-normal pl-1 d-flex">
-                <li class="pa-1"><a class="color-basico-fb" href="{% url 'inicio' %}">Inicio</a></li>
-                <li class="pa-1"><a class="color-basico-fb" href="#">Perfil</a></li>
-                <li class="pa-1"><a class="color-basico-fb" href="#">Portafolio</a></li>
-                <li class="pa-1"><a class="color-basico-fb" href="#">Comprar</a></li>
-            </ul>
-        </div>
-        <div class="barra f-right d-flex pr-1 gap-1">
-            <div id="logo" class="color-secundario pa-1 circulo letra-mediana color-primario-fuente"></div>
-            <div class="boton color-primario  pa-1">
-                <a class="color-basico-fw" href="#">Cerrar Sesion</a>
-            </div>
-        </div>
-    </header>
+
+    {% include 'header.html' %}
+
     <div class="color-cuatro pt-3">
         <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">Comprar Acciones</h3>
     </div>

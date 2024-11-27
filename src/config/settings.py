@@ -111,8 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'usuarios.UsuarioPersonalizado'
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -133,3 +131,10 @@ STATICFILES_DIRS = [
 
 # Directorio donde se recopilan los archivos estáticos para producción
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+AUTH_USER_MODEL = 'usuarios.UsuarioPersonalizado'
+
+AUTHENTICATION_BACKENDS = [
+    'usuarios.backends.EmailAuthBackend', 
+    'django.contrib.auth.backends.ModelBackend', 
+]

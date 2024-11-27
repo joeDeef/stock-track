@@ -5,7 +5,7 @@ import main, usuarios, compras
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
+    path('', include('main.urls'), name='home'),
     path('usuarios/', include('usuarios.urls')),
     path('compras/', include('compras.urls')),
 ]
