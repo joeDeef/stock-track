@@ -6,6 +6,7 @@
     <title>Comprar Acciones</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/tabla.css' %}">
 </head>
 <body>
 
@@ -16,25 +17,62 @@
             Comprar Acciones
         </h3>
     </div>
+
+    <script src="{% static 'js/seleccionarAcciones.js' %}"></script>
     
     <section class="container-compra d-flex color-cuatro pt-5">
         <!-- Columna Izquierda: Formulario de Compra -->
         <form class="info-login flex-column pl-5" method="POST" action="{% url 'compras:comprar_accion' %}">
             {% csrf_token %}
             <div>
-                <input type="text" name="nombre" id="nombre" class="input-compra" placeholder="Nombre de la acción" required>
+                <!-- Nombre de la acción -->
+                <label for="nombre" style="color: white;">Nombre Acción</label>
+                <input type="text" name="nombre" id="nombre" class="input-compra" placeholder="Nombre de la acción" required readonly>
+                <br>
+                <!-- Cantidad de acciones -->
+                <label for="cantidad" style="color: white;">Cantidad de Acciones</label>
                 <input type="number" name="cantidad" id="cantidad" class="input-compra" placeholder="Cantidad de acciones" min="1" required>
-                <input type="date" name="fecha_compra" id="fecha_compra" class="input-compra" placeholder="Fecha de compra" required>
+                <br>
+                <!-- Precio por acción -->
+                <label for="precio_accion" style="color: white;">Precio por Acción</label>
+                <input type="text" name="precio_accion" id="precio_accion" class="input-compra" placeholder="Precio" readonly>
+                <br>
+                <!-- Costo Total -->
+                <label for="costo_total" style="color: white;">Costo Total</label>
+                <input type="text" name="costo_total" id="costo_total" class="input-compra" placeholder="Costo Total" readonly>
             </div>
-            
             <div class="boton color-primario color-basico-fw pa-1">
                 <button type="submit" class="color-basico-fb f-b">Comprar</button>
             </div>
         </form>
     
-        <!-- Columna Derecha: Imagen (Opcional) -->
-        <div>
-            <!-- Puedes agregar una imagen o contenido aquí -->
+        <!-- Columna Derecha: Acciones -->
+        <div class="table-container">
+            <h2>Acciones Disponibles</h2>
+            {% if acciones_disponibles %}
+            <div class="table">
+                {% for accion in acciones_disponibles %}
+                <div class="table-row" 
+                     data-nombre="{{ accion.nombre }}" 
+                     data-empresa="{{ accion.empresa }}" 
+                     data-precio="{{ accion.precio_actual }}">
+                    <div class="info">
+                        {% if accion.imagen %}
+                        <img src="{{ accion.imagen.url }}" alt="{{ accion.nombre }}" class="accion-imagen">
+                        {% endif %}
+                        <div class="symbol">{{ accion.nombre }}</div>
+                        <div class="company">{{ accion.empresa }}</div>
+                    </div>
+                    <div class="price">
+                        <span class="price-symbol">$</span>
+                        <span class="price-value">{{ accion.precio_actual }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No hay acciones disponibles para comprar en este momento.</p>
+            {% endif %}
         </div>
     </section>
     

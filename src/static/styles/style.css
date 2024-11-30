@@ -208,7 +208,7 @@ header {
     border-radius: 5px;
 }
 .input-compra {
-    width: 70%; /* Ocupa todo el ancho del formulario */
+    width: 50%; /* Ocupa todo el ancho del formulario */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
