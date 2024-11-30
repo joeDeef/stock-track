@@ -43,6 +43,7 @@ LOCAL_APPS = [
     'main',  # Registramos la aplicación
     'usuarios',
     'compras',
+    'portafolio',
 ]
 
 THIRD_APPS = [

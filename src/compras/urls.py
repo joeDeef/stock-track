@@ -2,8 +2,9 @@
 from django.urls import path
 from . import views
 
-app_name = 'usuarios'  # Asegúrate de que esto esté presente
+app_name = 'compras'
 
 urlpatterns = [
-    path('', views.compras, name='compras'),
+    path('', views.compras, name='compras'),  
+    path('comprar/', views.comprar_accion, name='comprar_accion'),
 ]

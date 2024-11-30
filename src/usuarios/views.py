@@ -4,6 +4,7 @@ from django.contrib.auth.models import User  # Para crear usuarios
 from django.contrib import messages  # Para mostrar mensajes de éxito o error
 from usuarios.models import UsuarioPersonalizado
 from django.contrib.auth import authenticate, login
+from portafolio.models import Portafolio
 
 def get_login(request):
     return render(request, 'login.html')
@@ -63,6 +64,10 @@ def crear_cuenta(request):
             
             # Guardar el usuario en la base de datos
             usuario.save()
+            
+            # Crear el portafolio
+            portafolio = Portafolio(usuario=usuario)
+            portafolio.save()
 
             # Mensaje de éxito
             messages.success(request, 'Cuenta creada exitosamente.')

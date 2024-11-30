@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    {% load static %}  <!-- Cargamos las etiquetas estáticas -->
+    <title>Comprar Acciones</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 </head>
 <body>
@@ -12,29 +12,32 @@
     {% include 'header.html' %}
 
     <div class="color-cuatro pt-3">
-        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">Comprar Acciones</h3>
+        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">
+            Comprar Acciones
+        </h3>
     </div>
+    
     <section class="container-compra d-flex color-cuatro pt-5">
-        <!-- Columna Izquierda: Formulario de Login -->
-        <form class="info-login flex-column pl-5">
+        <!-- Columna Izquierda: Formulario de Compra -->
+        <form class="info-login flex-column pl-5" method="POST" action="{% url 'compras:comprar_accion' %}">
+            {% csrf_token %}
             <div>
-                <input type="text" id="cantidad" class="input-compra" placeholder="Cantidad de acciones">
-        
-                <input type="email" id="presio" class="input-compra" placeholder="Precio de acción">
-            
-                <input type="tel" id="costo" class="input-compra" placeholder="Costo total">
+                <input type="text" name="nombre" id="nombre" class="input-compra" placeholder="Nombre de la acción" required>
+                <input type="number" name="cantidad" id="cantidad" class="input-compra" placeholder="Cantidad de acciones" min="1" required>
+                <input type="date" name="fecha_compra" id="fecha_compra" class="input-compra" placeholder="Fecha de compra" required>
             </div>
             
             <div class="boton color-primario color-basico-fw pa-1">
-                <a class="color-basico-fb f-b" href="{% url 'usuarios:login' %}">Comprar</a>
+                <button type="submit" class="color-basico-fb f-b">Comprar</button>
             </div>
         </form>
     
-        <!-- Columna Derecha: Imagen -->
+        <!-- Columna Derecha: Imagen (Opcional) -->
         <div>
-            
+            <!-- Puedes agregar una imagen o contenido aquí -->
         </div>
     </section>
+    
     {% include 'mensajes.html' %}
     <script src="{% static 'js/mensajes.js' %}"></script>
 </body>
