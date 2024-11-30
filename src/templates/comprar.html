@@ -33,6 +33,12 @@
                 <label for="cantidad" style="color: white;">Cantidad de Acciones</label>
                 <input type="number" name="cantidad" id="cantidad" class="input-compra" placeholder="Cantidad de acciones" min="1" required>
                 <br>
+
+                <!-- Fecha de compra (nuevo campo) -->
+                <label for="fecha_compra" style="color: white;">Fecha de Compra</label>
+                <input type="date" name="fecha_compra" id="fecha_compra" class="input-compra" required>
+                <br>
+
                 <!-- Precio por acción -->
                 <label for="precio_accion" style="color: white;">Precio por Acción</label>
                 <input type="text" name="precio_accion" id="precio_accion" class="input-compra" placeholder="Precio" readonly>
@@ -53,19 +59,14 @@
             <div class="table">
                 {% for accion in acciones_disponibles %}
                 <div class="table-row" 
-                     data-nombre="{{ accion.nombre }}" 
-                     data-empresa="{{ accion.empresa }}" 
-                     data-precio="{{ accion.precio_actual }}">
+                    data-nombre="{{ accion.nombre }}" 
+                    data-empresa="{{ accion.empresa }}">
                     <div class="info">
                         {% if accion.imagen %}
                         <img src="{{ accion.imagen.url }}" alt="{{ accion.nombre }}" class="accion-imagen">
                         {% endif %}
                         <div class="symbol">{{ accion.nombre }}</div>
                         <div class="company">{{ accion.empresa }}</div>
-                    </div>
-                    <div class="price">
-                        <span class="price-symbol">$</span>
-                        <span class="price-value">{{ accion.precio_actual }}</span>
                     </div>
                 </div>
                 {% endfor %}
@@ -74,6 +75,8 @@
             <p>No hay acciones disponibles para comprar en este momento.</p>
             {% endif %}
         </div>
+        
+
     </section>
     
     {% include 'mensajes.html' %}
