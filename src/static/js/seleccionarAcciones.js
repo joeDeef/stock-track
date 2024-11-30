@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Cuando seleccionamos una fila de la tabla
     tableRows.forEach(row => {
-        // Agregamos un evento de clic a cada fila
         row.addEventListener('click', function() {
             tableRows.forEach(row => row.classList.remove('selected'));
 
@@ -34,6 +34,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Escuchamos los cambios en cantidad y precio
     document.getElementById('cantidad').addEventListener('input', actualizarCostoTotal);
     document.getElementById('precio_accion').addEventListener('input', actualizarCostoTotal);
+
+    // Función para obtener el precio de la acción según la fecha seleccionada
+    document.getElementById('fecha_compra').addEventListener('change', function() {
+        const fechaSeleccionada = this.value;
+        const nombreAccion = document.getElementById('nombre').value;
+
+        // Verificar que se haya seleccionado una fecha y que haya un nombre de acción
+        if (fechaSeleccionada && nombreAccion) {
+            fetch(`/compras/stock_api/obtener_precio_accion_en_fecha?fecha=${fechaSeleccionada}&nombre=${nombreAccion}`)
+            .then(response => response.json())
+                .then(data => {
+                    if (data && data.precio) {
+                        // Si obtenemos el precio, lo mostramos en el campo de precio
+                        const precio = parseFloat(data.precio);
+                        document.getElementById('precio_accion').value = precio.toFixed(2);
+                        // Actualizar el costo total
+                        actualizarCostoTotal();
+                    } else {
+                        alert('No se pudo obtener el precio para la fecha seleccionada.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener el precio:', error);
+                    alert('Hubo un error al obtener el precio.');
+                });
+        }
+    });
 });

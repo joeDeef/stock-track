@@ -37,12 +37,3 @@ class StockAPI:
         info = stock.info
         nombre_empresa = info.get('shortName', 'No disponible')
         return nombre_empresa
-
-    @staticmethod
-    def obtener_informacion_accion(ticker):
-        """
-        Obtiene tanto el nombre de la empresa como el precio actual de la acción.
-        """
-        nombre_empresa = StockAPI.obtener_nombre_empresa(ticker)
-        precio_actual = StockAPI.obtener_precio_accion_actual(ticker)
-        return nombre_empresa, precio_actual
