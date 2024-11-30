@@ -82,3 +82,6 @@ def crear_cuenta(request):
             return redirect('usuarios:signup')
 
     return redirect('usuarios:signup')
+
+def perfil(request):
+    return render(request, 'perfil.html')

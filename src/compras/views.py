@@ -5,7 +5,8 @@ from django.shortcuts import redirect
 from compras.models import StockAPI, Accion
 
 def compras(request):
-    return render(request, 'comprar.html')
+    acciones_disponibles = request.session.get('acciones_disponibles', [])
+    return render(request, 'comprar.html', {'acciones_disponibles': acciones_disponibles})
 
 @login_required
 def comprar_accion(request):
@@ -13,8 +14,7 @@ def comprar_accion(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         cantidad = int(request.POST.get('cantidad'))
-        fecha_compra = request.POST.get('fecha_compra')  # Capturamos la fecha de compra
-        print(nombre)
+        fecha_compra = request.POST.get('fecha_compra')
         
         if not nombre or cantidad <= 0:
             messages.error(request, 'Por favor, ingrese un nombre válido y una cantidad mayor a 0.')
@@ -25,11 +25,8 @@ def comprar_accion(request):
             return redirect('compras:comprar_accion')
 
         try:
-            # Obtener el portafolio del usuario autenticado
             portafolio = request.user.portafolio
-
-            # Obtener el precio de la acción al día de la fecha proporcionada
-            precio_compra = StockAPI.obtener_precio_accion_en_fecha(nombre, fecha_compra)
+            precio_compra = float(request.POST.get('precio_compra'))
 
             # Crear y guardar la nueva acción
             accion = Accion.objects.create(
@@ -37,7 +34,7 @@ def comprar_accion(request):
                 nombre=nombre,
                 cantidad=cantidad,
                 precio_compra=precio_compra,
-                fecha_compra=fecha_compra  # Usamos la fecha proporcionada
+                fecha_compra=fecha_compra 
             )
 
             # Actualizar el precio actual de la acción
@@ -52,7 +49,3 @@ def comprar_accion(request):
 
     # Si no es un POST, renderiza el formulario
     return render(request, 'comprar.html')
-
-def compras(request):
-    acciones_disponibles = request.session.get('acciones_disponibles', [])
-    return render(request, 'comprar.html', {'acciones_disponibles': acciones_disponibles})
