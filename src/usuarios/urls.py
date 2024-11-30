@@ -10,4 +10,6 @@ urlpatterns = [
     path('crearCuenta/', views.crear_cuenta, name='crearCuenta'),
     path('iniciarSesion/', views.iniciar_sesion, name='iniciarSesion'),
     path('logout/', LogoutView.as_view(next_page='inicio'), name='logout'),
+    path('perfil/', views.perfil, name='perfil'),
+
 ]
