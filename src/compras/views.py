@@ -55,8 +55,6 @@ def comprar_accion(request):
 
 def compras(request):
     acciones_disponibles = request.session.get('acciones_disponibles', [])
-    for accion in acciones_disponibles:
-        accion['precio_actual'] = round(accion['precio_actual'], 2)
     return render(request, 'comprar.html', {'acciones_disponibles': acciones_disponibles})
 
 def obtener_precio_accion(request):
