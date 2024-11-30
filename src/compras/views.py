@@ -27,7 +27,7 @@ def comprar_accion(request):
 
         try:
             portafolio = request.user.portafolio
-            precio_compra = float(request.POST.get('precio_compra'))
+            precio_compra = StockAPI.obtener_precio_accion_en_fecha(nombre, fecha_compra)
 
             # Crear y guardar la nueva acción
             accion = Accion.objects.create(
