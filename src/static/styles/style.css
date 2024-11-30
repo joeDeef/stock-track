@@ -208,7 +208,7 @@ header {
     border-radius: 5px;
 }
 .input-compra {
-    width: 50%; /* Ocupa todo el ancho del formulario */
+    width: 70%; /* Ocupa todo el ancho del formulario */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -252,3 +252,46 @@ header {
     background-color: #f44336; /* Rojo */
     color: white;
 }
+
+/* Contenedor de la tabla a la derecha */
+.acciones-disponibles {
+    margin-left: auto; /* Empuja la tabla hacia la derecha */
+    margin-right: 50px; /* Espacio adicional a la derecha si es necesario */
+    color: white;
+    width: 35%; /* Ajuste para que ocupe solo una parte del espacio */
+}
+
+/* Tabla */
+.tabla-acciones {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2d2d2f; /* Fondo oscuro para la tabla */
+    border-radius: 8px; /* Bordes redondeados */
+    color: white;
+    font-family: 'MontserratBold', sans-serif; /* Usar la misma fuente que el resto de la página */
+}
+
+/* Cabeceras de la tabla */
+.tabla-acciones th {
+    padding: 12px;
+    text-align: left;
+    background-color: #3193e2; /* Color primario de la página */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Filas de la tabla */
+.tabla-acciones td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #707070; /* Línea divisoria sutil */
+    font-size: 14px;
+}
+
+/* Efecto hover */
+.tabla-acciones tr:hover {
+    background-color: #3b4561; /* Color más claro al pasar el ratón */
+    cursor: pointer;
+}
+
