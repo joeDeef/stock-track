@@ -3,38 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    {% load static %}  <!-- Cargamos las etiquetas estáticas -->
+    <title>Comprar Acciones</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/tabla.css' %}">
 </head>
 <body>
 
     {% include 'header.html' %}
 
     <div class="color-cuatro pt-3">
-        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">Comprar Acciones</h3>
+        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">
+            Comprar Acciones
+        </h3>
     </div>
+
+    <script src="{% static 'js/seleccionarAcciones.js' %}"></script>
+    
     <section class="container-compra d-flex color-cuatro pt-5">
-        <!-- Columna Izquierda: Formulario de Login -->
-        <form class="info-login flex-column pl-5">
+        <!-- Columna Izquierda: Formulario de Compra -->
+        <form class="info-login flex-column pl-5" method="POST" action="{% url 'compras:comprar_accion' %}">
+            {% csrf_token %}
             <div>
-                <input type="text" id="cantidad" class="input-compra" placeholder="Cantidad de acciones">
-        
-                <input type="email" id="presio" class="input-compra" placeholder="Precio de acción">
-            
-                <input type="tel" id="costo" class="input-compra" placeholder="Costo total">
+                <!-- Nombre de la acción -->
+                <label for="nombre" style="color: white;">Nombre Acción</label>
+                <input type="text" name="nombre" id="nombre" class="input-compra" placeholder="Nombre de la acción" required readonly>
+                <br>
+                <!-- Cantidad de acciones -->
+                <label for="cantidad" style="color: white;">Cantidad de Acciones</label>
+                <input type="number" name="cantidad" id="cantidad" class="input-compra" placeholder="Cantidad de acciones" min="1" required>
+                <br>
+                <!-- Precio por acción -->
+                <label for="precio_accion" style="color: white;">Precio por Acción</label>
+                <input type="text" name="precio_accion" id="precio_accion" class="input-compra" placeholder="Precio" readonly>
+                <br>
+                <!-- Costo Total -->
+                <label for="costo_total" style="color: white;">Costo Total</label>
+                <input type="text" name="costo_total" id="costo_total" class="input-compra" placeholder="Costo Total" readonly>
             </div>
-            
             <div class="boton color-primario color-basico-fw pa-1">
-                <a class="color-basico-fb f-b" href="{% url 'usuarios:login' %}">Comprar</a>
+                <button type="submit" class="color-basico-fb f-b">Comprar</button>
             </div>
         </form>
     
-        <!-- Columna Derecha: Imagen -->
-        <div>
-            
+        <!-- Columna Derecha: Acciones -->
+        <div class="table-container">
+            <h2>Acciones Disponibles</h2>
+            {% if acciones_disponibles %}
+            <div class="table">
+                {% for accion in acciones_disponibles %}
+                <div class="table-row" 
+                     data-nombre="{{ accion.nombre }}" 
+                     data-empresa="{{ accion.empresa }}" 
+                     data-precio="{{ accion.precio_actual }}">
+                    <div class="info">
+                        {% if accion.imagen %}
+                        <img src="{{ accion.imagen.url }}" alt="{{ accion.nombre }}" class="accion-imagen">
+                        {% endif %}
+                        <div class="symbol">{{ accion.nombre }}</div>
+                        <div class="company">{{ accion.empresa }}</div>
+                    </div>
+                    <div class="price">
+                        <span class="price-symbol">$</span>
+                        <span class="price-value">{{ accion.precio_actual }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No hay acciones disponibles para comprar en este momento.</p>
+            {% endif %}
         </div>
     </section>
+    
     {% include 'mensajes.html' %}
     <script src="{% static 'js/mensajes.js' %}"></script>
 </body>

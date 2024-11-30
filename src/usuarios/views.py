@@ -4,6 +4,9 @@ from django.contrib.auth.models import User  # Para crear usuarios
 from django.contrib import messages  # Para mostrar mensajes de éxito o error
 from usuarios.models import UsuarioPersonalizado
 from django.contrib.auth import authenticate, login
+from portafolio.models import Portafolio
+from compras.models import AccionDisponible
+from compras.utils import obtener_detalles_acciones
 
 def get_login(request):
     return render(request, 'login.html')
@@ -23,7 +26,9 @@ def iniciar_sesion(request):
             # Si la autenticación es exitosa, inicia sesión
             login(request, user)
             messages.success(request, 'Inicio de sesión exitoso.')
+            request.session['acciones_disponibles'] = obtener_detalles_acciones()
             return redirect('/compras/')
+
         else:
             # Si la autenticación falla
             messages.error(request, 'Correo electrónico o contraseña incorrectos.')
@@ -60,9 +65,12 @@ def crear_cuenta(request):
             
             # Cifrar la contraseña antes de guardarla
             usuario.set_password(password)
-            
-            # Guardar el usuario en la base de datos
+        
             usuario.save()
+            
+            # Crear el portafolio
+            portafolio = Portafolio(usuario=usuario)
+            portafolio.save()
 
             # Mensaje de éxito
             messages.success(request, 'Cuenta creada exitosamente.')
