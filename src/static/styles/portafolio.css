@@ -1,0 +1,77 @@
+body {
+    background-color: #2d2d2f;
+    color: #aaaaab;
+    font-family: Arial, sans-serif;
+}
+
+.tabla-portafolio {
+    width: 80%; /* Ajusta el porcentaje según lo que necesites */
+    margin: 20px auto; /* Centra la tabla y agrega márgenes superior e inferior */
+    padding: 20px; /* Espaciado interno de la tabla */
+    border-collapse: collapse;
+    background-color: transparent;
+    color: #aaaaab;
+    border-radius: 8px; /* Opcional: bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Opcional: sombra para resaltar la tabla */
+}
+
+.tabla-portafolio th, .tabla-portafolio td {
+    padding: 12px;
+    text-align: left;
+    border: none;
+}
+
+.tabla-portafolio th {
+    background-color: transparent;
+    color: #aaaaab;
+    font-weight: bold;
+}
+
+.tabla-portafolio td {
+    background-color: transparent;
+}
+
+.tabla-portafolio tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tabla-portafolio tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tabla-portafolio tr {
+    border-bottom: 1px solid #444;
+}
+
+.tabla-portafolio td span {
+    font-weight: bold;
+    color: inherit;
+}
+
+.tabla-portafolio .ganancia {
+    color: green;
+}
+
+.tabla-portafolio .perdida {
+    color: red;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0 10%;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .left {
+    text-align: left;
+}
+
+.header .right {
+    text-align: right;
+}
