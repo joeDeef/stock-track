@@ -11,5 +11,5 @@ urlpatterns = [
     path('iniciarSesion/', views.iniciar_sesion, name='iniciarSesion'),
     path('logout/', LogoutView.as_view(next_page='inicio'), name='logout'),
     path('perfil/', views.perfil, name='perfil'),
-
+    path('updatePerfil',views.update_perfil, name='updatePerfil')
 ]
