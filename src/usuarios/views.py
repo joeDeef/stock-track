@@ -1,10 +1,11 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User  # Para crear usuarios
-from django.contrib import messages  # Para mostrar mensajes de éxito o error
+from django.contrib.auth.models import User
+from django.contrib import messages
 from usuarios.models import UsuarioPersonalizado
 from django.contrib.auth import authenticate, login
 from portafolio.models import Portafolio
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
 
 def get_login(request):
     return render(request, 'login.html')
@@ -80,5 +81,49 @@ def crear_cuenta(request):
 
     return redirect('usuarios:signup')
 
+@login_required
 def perfil(request):
-    return render(request, 'perfil.html')
+    return render(request, 'perfil.html', {'usuario': request.user})
+
+def update_perfil(request):
+    if request.method == 'POST':
+        usuario = request.user
+
+        # Datos del formulario
+        nombre = request.POST.get('nombre')
+        email = request.POST.get('email')
+        telefono = request.POST.get('telefono')
+        contraseña_actual = request.POST.get('contraseña_actual')
+        nueva_contraseña = request.POST.get('nueva_contraseña')
+
+        # Validaciones
+        if not check_password(contraseña_actual, usuario.password):
+            messages.error(request, "La contraseña actual es incorrecta.")
+            return redirect('usuarios:perfil')
+
+        if nueva_contraseña and len(nueva_contraseña) < 8:
+            messages.error(request, "La nueva contraseña debe tener al menos 8 caracteres.")
+            return redirect('usuarios:perfil')
+
+        # Actualizamos los datos del usuario
+        usuario.nombres = nombre
+        usuario.email = email
+        usuario.telefono = telefono
+
+        if nueva_contraseña:
+            usuario.set_password(nueva_contraseña)  # Actualizamos la contraseña
+
+        usuario.save()  # Guardamos los cambios en la base de datos
+
+        # Volvemos a autenticar al usuario
+        if nueva_contraseña:
+            usuario = authenticate(request, username=usuario.username, password=nueva_contraseña)
+            if usuario:
+                login(request, usuario)  # Mantenemos la sesión activa
+
+        # Mensaje de éxito y redirección
+        messages.success(request, "Tu perfil ha sido actualizado correctamente.")
+        return redirect('usuarios:perfil')
+
+    # Si no es una solicitud POST, redirigimos al perfil
+    return redirect('usuarios:perfil')

@@ -1,3 +1,5 @@
+{% load static %}
+
 <header class="color-secundario d-flex justify-sb">
     <div class="barra f-left d-flex pl-1">
         <div class="logo"></div>
@@ -17,7 +19,7 @@
         {% if user.is_authenticated %}
             <!-- Si el usuario está autenticado -->
             <div class="boton pa-1 borde-1">
-                <span class="color-basico-fw f-b">Bienvenido, {{ user.nombres }}</span>
+                <img src="{% static 'img/perfilDefault.png' %}" alt="Foto de perfil predeterminada" class="perfil-img" style="width: 40px; height: 40px; border-radius: 50%;">
             </div>
             <form action="{% url 'usuarios:logout' %}" method="post">
                 {% csrf_token %}
