@@ -20,7 +20,7 @@
                 {% csrf_token %}
                 <input type="email" name="email" id="email" class="input-login" placeholder="Email" required>
                 <input type="password" name="password" id="password" class="input-login" placeholder="Contraseña" required>
-                <button type="submit" class="boton color-primario color-basico-fw pa-1">
+                <button id="boton-iniciar-sesion" type="submit" class="boton color-primario color-basico-fw pa-1">
                     <span class="color-basico-fb f-b">Ingresar</span>
                 </button>
             </form>
@@ -28,8 +28,8 @@
         </div>
     
         <!-- Columna Derecha: Imagen -->
-        <div class="imagen-login">
-            <img src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
+        <div id="imagen-contenedor" class="imagen-login">
+            <img id="imagen-login1" src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
         </div>
     </section>
 

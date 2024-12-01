@@ -17,7 +17,7 @@
         <div class="info-texto pl-5">
             <div class="logo-completo pb-1"></div>
             <h2 class="color-terciario-fuente">¡Invierte al instante, donde quieras y cuando quieras!</h2>
-            <p class="color-terciario-fuente pt-1 pb-3">
+            <p id="mi-parrafo-especifico" class="color-terciario-fuente pt-1 pb-3">
                 Invertir nunca fue tan sencillo: todo lo que necesitas en la plataforma de inversión definitiva, accesible desde cualquier dispositivo.
             </p>
             {% if not user.is_authenticated %}
@@ -26,7 +26,7 @@
                 <div class="boton color-primario color-basico-fw pa-1">
                     <a class="color-basico-fb f-b" href="{% url 'usuarios:login' %}">Inicia Sesión</a>
                 </div>
-                <div class="boton borde-1 color-basico-fw pa-1">
+                <div id="boton-registro" class="boton borde-1 color-basico-fw pa-1">
                     <a class="color-basico-fw f-b" href="{% url 'usuarios:signup' %}">Regístrate</a>
                 </div>
             </div>

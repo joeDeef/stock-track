@@ -7,13 +7,14 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 </head>
-<body>
+<body id="body-comprar">
 
     {% include 'header.html' %}
 
     <div class="color-cuatro pt-3">
-        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">
-            Comprar Acciones
+        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px; display: flex; justify-content: space-between;">
+            <span>Comprar Acciones</span>
+            <span>{{ user.nombres }}</span>
         </h3>
     </div>
     
@@ -22,70 +23,80 @@
         <form class="info-login flex-column pl-5" method="POST" action="{% url 'compras:comprar_accion' %}">
             {% csrf_token %}
             <div class="campo">
-                <label for="nombre" style="color: white;">Nombre Acción</label>
+                <label class="etiqueta" for="nombre" style="color: white;">Nombre de la Acción</label>
                 <input type="text" name="nombre" id="nombre" class="input-compra" placeholder="Nombre de la acción" required>
             </div>
             <div class="campo">
-                <label for="cantidad" style="color: white;">Cantidad de acciones</label>
+                <label class="etiqueta" for="cantidad" style="color: white;">Cantidad de acciones</label>
                 <input type="number" name="cantidad" id="cantidad" class="input-compra" placeholder="Cantidad de acciones" min="1" required>
             </div>
             <div class="campo">
-                <label for="fecha_compra" style="color: white;">Fecha de compra</label>
+                <label class="etiqueta" for="fecha_compra" style="color: white;">Fecha de compra</label>
                 <input type="date" name="fecha_compra" id="fecha_compra" class="input-compra" placeholder="Fecha de compra" required>
             </div>
 
             <!-- Nuevos campos no editables -->
             <div class="campo">
-                <input type="text" id="precio_accion" class="input-compra" placeholder="Precio de Acción en Fecha" readonly>
+                <input type="text" id="precio_accion" class="input-compra" placeholder="Precio de Acción en la fecha elegida" readonly>
             </div>
             <div class="campo">
                 <input type="text" id="total_compra" class="input-compra" placeholder="Total de Compra" readonly>
             </div>
 
-            <div class="boton color-primario color-basico-fw pa-1">
-                <button type="submit" id="btn-comprar" class="color-basico-fb f-b">Comprar</button>
+            <div >
+                <button type="submit" id="btn-comprar" class="boton color-primario color-basico-fw pa-1">Comprar</button>
             </div>
         </form>
     
         <!-- Columna Derecha: Tabla con empresas y acciones -->
+
         <div class="acciones-disponibles">
             <table class="tabla-acciones">
                 <thead>
                     <tr>
+                        <th>Imagen</th>
                         <th>Empresa</th>
                         <th>Nombre Acción</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr onclick="agregarNombreAccion('GOOGL')">
+                        <td><img src="{% static 'img/google.png' %}" alt="Google" width="50"></td>
                         <td>Google</td>
                         <td>GOOGL</td>
                     </tr>
                     <tr onclick="agregarNombreAccion('MSFT')">
+                        <td><img src="{% static 'img/microsoft.png' %}" alt="Microsoft" width="50"></td>
                         <td>Microsoft</td>
                         <td>MSFT</td>
                     </tr>
                     <tr onclick="agregarNombreAccion('TSLA')">
+                        <td><img src="{% static 'img/tesla.png' %}" alt="Tesla" width="50"></td>
                         <td>Tesla</td>
                         <td>TSLA</td>
                     </tr>
                     <tr onclick="agregarNombreAccion('META')">
+                        <td><img src="{% static 'img/meta.png' %}" alt="Meta" width="50"></td>
                         <td>Meta (Facebook)</td>
                         <td>META</td>
                     </tr>
                     <tr onclick="agregarNombreAccion('NFLX')">
+                        <td><img src="{% static 'img/netflix.png' %}" alt="Netflix" width="50"></td>
                         <td>Netflix</td>
                         <td>NFLX</td>
                     </tr>
                     <tr onclick="agregarNombreAccion('NVDA')">
+                        <td><img src="{% static 'img/nvidia.png' %}" alt="NVIDIA" width="50"></td>
                         <td>NVIDIA</td>
                         <td>NVDA</td>
                     </tr>
                     <tr onclick="agregarNombreAccion('DIS')">
+                        <td><img src="{% static 'img/disney.png' %}" alt="Disney" width="50"></td>
                         <td>Disney</td>
                         <td>DIS</td>
                     </tr>
                     <tr onclick="agregarNombreAccion('INTC')">
+                        <td><img src="{% static 'img/intel.png' %}" alt="Intel" width="50"></td>
                         <td>Intel</td>
                         <td>INTC</td>
                     </tr>
@@ -93,7 +104,6 @@
             </table>
         </div>
 
-    </section>
     
     {% include 'mensajes.html' %}
     <script src="{% static 'js/compras.js' %}"></script>
