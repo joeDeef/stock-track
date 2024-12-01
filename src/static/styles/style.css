@@ -259,11 +259,17 @@ header {
     width: auto;
 }
 #imagen-login1 {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center; /* Centra horizontalmente la imagen */
     align-items: center; /* Centra la imagen verticalmente */
     animation: moveIn 1s ease-in-out;
+}
+
+#imagen-contenedor {
+    width: 50%;
+    background-color: #110f1c;
+
 }
 
 #imagen-registrar {
