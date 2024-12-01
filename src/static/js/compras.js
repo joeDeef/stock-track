@@ -49,3 +49,22 @@ document.addEventListener("DOMContentLoaded", () => {
     fechaCompra.addEventListener("input", actualizarCampos);
     nombreAccion.addEventListener("input", actualizarCampos);
 });
+
+function confirmarCompra() {
+    // Obtenemos los valores del formulario para incluirlos en el mensaje de confirmación
+    const nombreAccion = document.getElementById("nombre").value;
+    const cantidad = document.getElementById("cantidad").value;
+    const fechaCompra = document.getElementById("fecha_compra").value;
+
+    // Verificamos que todos los campos estén llenos
+    if (!nombreAccion || !cantidad || !fechaCompra) {
+        alert("Por favor, completa todos los campos antes de comprar.");
+        return false;
+    }
+
+    // Mensaje de confirmación
+    const mensaje = `Estás a punto de comprar ${cantidad} acciones de ${nombreAccion} el día ${fechaCompra}. ¿Deseas continuar?`;
+
+    // Retornamos true si el usuario confirma, false si cancela
+    return window.confirm(mensaje);
+}
