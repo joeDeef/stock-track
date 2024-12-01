@@ -13,12 +13,14 @@
     {% include 'header.html' %}
 
     <div class="container">
-        <div class="header">
-            <h1 class="left">Portafolio</h1>
-            <h1 class="right">{{ user.nombres }}</h1>
+        <div class="color-cuatro pt-3">
+            <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px; display: flex; justify-content: space-between;">
+                <span>Portafolio</span>
+                <span>{{ user.nombres }}</span>
+            </h3>
         </div>
-        
-        <hr>
+            
+
         {% if mensaje %}
     <p>{{ mensaje }}</p>
     {% else %}
