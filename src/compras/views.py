@@ -11,7 +11,6 @@ def compras(request):
 
 @login_required
 def comprar_accion(request):
-    print("entra")
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         cantidad = int(request.POST.get('cantidad'))
