@@ -24,9 +24,11 @@
 
     <div class="profile-image">
         <img src="{% static 'img/usuario.png' %}" alt="Imagen de perfil">
+        <h3 id="nombre_perfil">{{ usuario.nombres }}</h3>
     </div>
 
     <div class="profile-details">
+        <h3 id="titulo-datos">Datos Personales</h3>
         <form action="{% url 'usuarios:updatePerfil' %}" method="POST">
             {% csrf_token %}
     
@@ -42,17 +44,21 @@
     
             <div class="form-group">
                 <label for="contraseña_actual">Contraseña Actual:</label>
-                <div style="display: flex; align-items: center;">
+                <div>
                     <input type="password" id="contraseña_actual" name="contraseña_actual" required>
-                    <button type="button" class="toggle-password" data-input="contraseña_actual">Mostrar</button>
+                    <button type="button" class="toggle-password" data-input="contraseña_actual" data-show-src="{% static 'img/ojo.png' %}" data-hide-src="{% static 'img/ojo-cerrado.png' %}">
+                        <img src="{% static 'img/ojo.png' %}" alt="Mostrar">
+                    </button>
                 </div>
             </div>
-    
+            
             <div class="form-group">
                 <label for="nueva_contraseña">Nueva Contraseña:</label>
-                <div style="display: flex; align-items: center;">
+                <div>
                     <input type="password" id="nueva_contraseña" name="nueva_contraseña" required>
-                    <button type="button" class="toggle-password" data-input="nueva_contraseña">Mostrar</button>
+                    <button type="button" class="toggle-password" data-input="nueva_contraseña" data-show-src="{% static 'img/ojo.png' %}" data-hide-src="{% static 'img/ojo-cerrado.png' %}">
+                        <img src="{% static 'img/ojo.png' %}" alt="Mostrar">
+                    </button>
                 </div>
             </div>
     
