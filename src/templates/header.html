@@ -18,12 +18,12 @@
     <div class="barra f-right d-flex pr-1 gap-1">
         {% if user.is_authenticated %}
             <!-- Si el usuario está autenticado -->
-            <div class="boton pa-1 borde-1">
-                <img src="{% static 'img/perfilDefault.png' %}" alt="Foto de perfil predeterminada" class="perfil-img" style="width: 40px; height: 40px; border-radius: 50%;">
+            <div class="boton pa-1" style="width: 40px; align-items: center;">
+                <img src="{% static 'img/usuario.png' %}" alt="Foto de perfil predeterminada" class="perfil-img" style="width: 40px; height: 40px; border-radius: 50%;">
             </div>
             <form action="{% url 'usuarios:logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="color-primario pa-1">Cerrar Sesión</button>
+                <button type="submit" class="boton color-primario pa-1 color-basico-fw">Cerrar Sesión</button>
             </form>
             
         {% else %}

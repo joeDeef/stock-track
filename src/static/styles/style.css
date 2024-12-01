@@ -149,6 +149,7 @@ header {
 
 
 .boton {
+    border: none;
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
@@ -421,4 +422,3 @@ header {
     background-color: #3b4561; /* Color más claro al pasar el ratón */
     cursor: pointer;
 }
-
