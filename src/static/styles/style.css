@@ -30,6 +30,65 @@
     font-size: 20px;
 }
 
+#titulo-portada {
+    font-size: 2em; /* Tamaño de fuente inicial */
+    text-align: left; /* Centrar el texto */
+}
+
+#mi-parrafo-especifico {
+
+    font-size: 2em;
+    text-align: left;
+    padding-right: 90px;
+    padding-left: 40px;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 1366px) {
+    #titulo-portada {
+        font-size: 1.8em; /* Reducir el tamaño de la fuente */
+    }
+
+    #mi-parrafo-especifico {
+        font-size: 1.2em; /* Reducir el tamaño de la fuente */
+    }
+}
+
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1370px) {
+    #titulo-portada {
+        font-size: 3em; /* Aumentar el tamaño de la fuente */
+    }
+
+    #mi-parrafo-especifico {
+        font-size: 1.8em; /* Aumentar el tamaño de la fuente */
+    }
+}
+
+
+/* Estilos base para los botones */
+#boton-registro {
+    border: 2px solid white;  
+    padding: 10px;             
+    text-align: center; 
+    transition: background-color 0.5s;       
+}
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1370px) {
+    #boton-login1, #boton-registro {
+        padding: 12px 50px; /* Aumentar el tamaño del padding */
+        margin-right: 25px; /* Aumentar el margen izquierdo */
+        font-size: 1.2em; /* Aumentar el tamaño de la fuente */
+    }
+    #boton-login1 a, #boton-registro a {
+
+/* Aumentar el tamaño de la fuente */
+    }
+}
+
+
 /* Preset */
 body { margin: 0; padding: 0; }
 * { margin: 0}
@@ -82,12 +141,7 @@ a {
      padding-right: 0px;
      padding-left: 40px;
 }
-#mi-parrafo-especifico {
-    font-size: 22px;
-    text-align: left;
-    padding-right: 90px;
-    padding-left: 40px;
-}
+
 .color-basico-fb { color: black; }
 .color-basico-fw { color: rgb(255, 255, 255); }
 /*tamaño fuentes*/
@@ -177,12 +231,7 @@ header {
     width: 110px;
 }
 
-#boton-registro {
-    border: 2px solid white;  
-    padding: 10px;             
-    text-align: center; 
-    transition: background-color 0.5s;       
-}
+
 
 #boton-registro:hover {
     background-color: white;  
@@ -311,6 +360,8 @@ header {
         transform: translateY(0); /* Termina en su posición original */
     }
 }
+
+
 
 
 /* Contenedor Principal */
