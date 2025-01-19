@@ -10,6 +10,7 @@ def get_portafolio(request):
         acciones_portafolio = portafolio.obtener_acciones()
 
         for accion in acciones_portafolio:
+            accion.actualizar_precio()
             accion.costo_total = round(accion.precio_compra * accion.cantidad, 2)
             accion.costo_mercado_total = round(accion.precio_actual * accion.cantidad, 2)
 

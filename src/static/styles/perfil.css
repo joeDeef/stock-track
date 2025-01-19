@@ -1,0 +1,183 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.body-perfil {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    background-color: #2d2d2f;
+    color: white;
+}
+
+#fondo-perfil {
+    padding: 1.5%;
+    background: linear-gradient(to bottom, #264d50, #402850);
+    border-radius: 2px;
+    max-width: 90%;
+    height: 20vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-details {
+    position: relative;
+    top: -25vh;
+    left: 50%;
+    width: 80%;
+    max-width: 500px;
+    padding: 5px;
+    text-align: left; /* Alinea el texto a la derecha */
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.form-group input[type="file"] {
+    flex: 2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#titulo-datos {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.form-group label {
+    flex: 1;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.form-group input {
+    flex: 2;
+    width: 10%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group button {
+    flex: 0 0 50px; /* Asegúrate de que el botón tenga un tamaño fijo */
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 60px; /* Ancho fijo */
+    height: 40px; /* Alto fijo */
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* Asegúrate de que el botón esté por encima de otros elementos */
+    overflow: hidden; /* Asegúrate de que el contenido no se desborde */
+}
+
+.form-group button img {
+    max-width: 100%; /* Ajusta el tamaño de la imagen dentro del botón */
+    max-height: 100%; /* Ajusta el tamaño de la imagen dentro del botón */
+    display: block; /* Asegúrate de que la imagen se muestre como un bloque */
+}
+
+.form-group div {
+    display: flex;
+    align-items: center;
+    width: 67%; /* Asegura que el div ocupe todo el ancho disponible */
+}
+
+.profile-image {
+    position: relative;
+    top: -15vh;
+    left: 25%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+}
+
+
+.profile-image img {
+    width: 30vw;
+    height: 30vw;
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 50%;
+    border: 10px solid #2d2d2f;
+}
+
+@media (max-width: 768px) {
+    .profile-image img {
+        width: 50vw;
+        height: 50vw;
+    }
+    .profile-details {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-image img {
+        width: 70vw;
+        height: 70vw;
+    }
+    .profile-details {
+        width: 100%;
+    }
+    #fondo-perfil {
+        padding: 5px;
+        max-width: 100%;
+    }
+}
+
+.profile-details label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#nombre_perfil {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.profile-details input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-actualizar {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-actualizar:hover {
+    background-color: #0056b3;
+}

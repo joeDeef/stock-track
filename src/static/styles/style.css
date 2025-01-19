@@ -9,6 +9,27 @@
     src: url('../fonts/sf-ui-display-light.otf') format('opentype');
 }
 
+#body-comprar{
+    overflow: hidden;
+}
+
+#btn-comprar {
+    border: none;
+    margin-left: 15%;
+    margin-top: 2%;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    width: 210px;
+    background-color: #3193e2;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.5s;
+    font-size: 20px;
+}
+
 /* Preset */
 body { margin: 0; padding: 0; }
 * { margin: 0}
@@ -54,9 +75,21 @@ a {
 /*fuentes*/
 .color-primario-fuente { color: #176FA6; }
 .color-secundario-fuente { color: #707070; }
-.color-terciario-fuente { color: #d8d8d8; }
+.color-terciario-fuente {
+     color: #d8d8d8;
+     font-size: 35px; 
+     text-align: left;
+     padding-right: 0px;
+     padding-left: 40px;
+}
+#mi-parrafo-especifico {
+    font-size: 22px;
+    text-align: left;
+    padding-right: 90px;
+    padding-left: 40px;
+}
 .color-basico-fb { color: black; }
-.color-basico-fw { color: white; }
+.color-basico-fw { color: rgb(255, 255, 255); }
 /*tamaño fuentes*/
 .f-b{font-size: 16px;;}
 .f-xb{font-size: 22px;}
@@ -117,7 +150,7 @@ header {
     margin: 0 auto;
 }
 .logo-completo{
-    height: 300px;
+    height: 250px;
     width: 300px;
     background-image: url(../img/finac-blanco.png);
     background-repeat: no-repeat;
@@ -137,10 +170,69 @@ header {
 
 
 .boton {
+    border: none;
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
+    width: 110px;
 }
+
+#boton-registro {
+    border: 2px solid white;  
+    padding: 10px;             
+    text-align: center; 
+    transition: background-color 0.5s;       
+}
+
+#boton-registro:hover {
+    background-color: white;  
+}
+
+#boton-registro a {
+    color: white;  /* Color del texto en blanco */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.5s;  /* Suaviza el cambio de color del texto */
+}
+
+#boton-registro:hover a {
+    color: black;  
+}
+
+#boton-crear-cuenta {
+    border: 2px solid rgb(0, 0, 0);  
+    padding: 10px;             
+    text-align: center; 
+    transition: background-color 0.5s;  
+}
+
+#boton-crear-cuenta:hover {
+    background-color: rgba(0, 0, 0, 0.836);  
+}
+
+#boton-crear-cuenta a {
+    color: rgb(0, 0, 0);  /* Color del texto en blanco */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.5s;  /* Suaviza el cambio de color del texto */
+}
+
+#boton-crear-cuenta:hover a {
+    color: rgb(255, 255, 255);  
+}
+
+#boton-registrar {
+    border: none;
+    color: white; 
+    padding: 10px;             
+    text-align: center; 
+    transition: background-color 0.5s;       
+}
+
+#boton-iniciar-sesion {
+    border: none;
+}
+
 .card {
     width: 180px;
     border: 1px solid #707070;
@@ -168,6 +260,15 @@ header {
     display: flex;
     justify-content: center; /* Centra la imagen dentro del contenedor */
     align-items: center; /* Centra la imagen verticalmente */
+    animation: mover-der-izq 1s ease-in-out;
+}
+@keyframes mover-der-izq {
+    from {
+        transform: translateX(100%); /* Inicia fuera de la pantalla hacia arriba */
+    }
+    to {
+        transform: translateY(0); /* Termina en su posición original */
+    }
 }
 
 .info-login {
@@ -180,11 +281,35 @@ header {
     width: 50%;
     width: auto;
 }
-.imagen-login {
-    width: 50%; /* Ocupa la mitad del ancho */
+#imagen-login1 {
+    width: 100%;
     display: flex;
     justify-content: center; /* Centra horizontalmente la imagen */
-    align-items: center; /* Centra verticalmente la imagen */
+    align-items: center; /* Centra la imagen verticalmente */
+    animation: moveIn 1s ease-in-out;
+}
+
+#imagen-contenedor {
+    width: 50%;
+    background-color: #110f1c;
+
+}
+
+#imagen-registrar {
+    width: 50%;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente la imagen */
+    align-items: center; /* Centra la imagen verticalmente */
+    animation: mover-der-izq 1s ease-in-out;
+}
+
+@keyframes moveIn {
+    from {
+        transform: translateX(-100%); /* Inicia fuera de la pantalla hacia arriba */
+    }
+    to {
+        transform: translateY(0); /* Termina en su posición original */
+    }
 }
 
 
@@ -207,13 +332,36 @@ header {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.campo {
+    display: flex;
+    align-items:center;
+    justify-content:end;
+}
+
 .input-compra {
-    width: 50%; /* Ocupa todo el ancho del formulario */
+ 
+
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 425px; 
+    margin-right: 50px;  /* Cambia este valor a la posición deseada en X */
+    
+    display: block; /* Asegura que cada input esté en una nueva línea */
 }
+
+.etiqueta {
+    font-size: 14px;
+
+    padding: 10px;
+    width: 125px; 
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    
+}
+
+
 .input-registro {
     width: 70%; /* Ocupa todo el ancho del formulario */
     padding: 10px;
@@ -221,6 +369,7 @@ header {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 
 /* Columna Derecha: Imagen */
 .imagen-pantalla {
@@ -251,4 +400,46 @@ header {
 .mensaje.error {
     background-color: #f44336; /* Rojo */
     color: white;
+}
+
+/* Contenedor de la tabla a la derecha */
+.acciones-disponibles {
+    margin-left: auto; /* Empuja la tabla hacia la derecha */
+    margin-right: 50px; /* Espacio adicional a la derecha si es necesario */
+    color: white;
+    width: 35%; /* Ajuste para que ocupe solo una parte del espacio */
+}
+
+/* Tabla */
+.tabla-acciones {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2d2d2f; /* Fondo oscuro para la tabla */
+    border-radius: 8px; /* Bordes redondeados */
+    color: white;
+    font-family: 'MontserratBold', sans-serif; /* Usar la misma fuente que el resto de la página */
+}
+
+/* Cabeceras de la tabla */
+.tabla-acciones th {
+    padding: 12px;
+    text-align: left;
+    background-color: #3193e2; /* Color primario de la página */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Filas de la tabla */
+.tabla-acciones td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #707070; /* Línea divisoria sutil */
+    font-size: 14px;
+}
+
+/* Efecto hover */
+.tabla-acciones tr:hover {
+    background-color: #3b4561; /* Color más claro al pasar el ratón */
+    cursor: pointer;
 }

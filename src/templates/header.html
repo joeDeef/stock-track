@@ -1,3 +1,5 @@
+{% load static %}
+
 <header class="color-secundario d-flex justify-sb">
     <div class="barra f-left d-flex pl-1">
         <div class="logo"></div>
@@ -8,7 +10,7 @@
             {% if user.is_authenticated %}
                 <!-- Si el usuario está autenticado, mostramos las siguientes opciones -->
                 <li class="pa-1"><a class="color-basico-fb" href="{% url 'usuarios:perfil' %}">Perfil</a></li>
-                <li class="pa-1"><a class="color-basico-fb" href="{% url 'compras:compras' %}">Comprar</a></li>
+                <li class="pa-1"><a class="color-basico-fb" href="{% url 'compras:compras' %}">Registrar</a></li>
                 <li class="pa-1"><a class="color-basico-fb" href="{% url 'portafolio:portafolio' %}">Portafolio</a></li>
             {% endif %}
         </ul>
@@ -16,12 +18,12 @@
     <div class="barra f-right d-flex pr-1 gap-1">
         {% if user.is_authenticated %}
             <!-- Si el usuario está autenticado -->
-            <div class="boton pa-1 borde-1">
-                <span class="color-basico-fw f-b">Bienvenido, {{ user.nombres }}</span>
+            <div class="boton pa-1" style="width: 40px; align-items: center;">
+                <img src="{% static 'img/usuario.png' %}" alt="Foto de perfil predeterminada" class="perfil-img" style="width: 40px; height: 40px; border-radius: 50%;">
             </div>
             <form action="{% url 'usuarios:logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="color-primario pa-1">Cerrar Sesión</button>
+                <button type="submit" class="boton color-primario pa-1 color-basico-fw">Cerrar Sesión</button>
             </form>
             
         {% else %}
@@ -29,7 +31,7 @@
             <div class="boton color-primario pa-1">
                 <a class="color-basico-fw" href="{% url 'usuarios:login' %}">Iniciar Sesión</a>
             </div>
-            <div class="boton pa-1 borde-1">
+            <div id="boton-crear-cuenta" class="boton pa-1 borde-1">
                 <a class="color-basico-fw" href="{% url 'usuarios:signup' %}">Crear Cuenta</a>
             </div>
         {% endif %}

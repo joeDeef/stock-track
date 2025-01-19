@@ -1,85 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar Acciones</title>
+    <title>Registrar Acciones</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/tabla.css' %}">
 </head>
-<body>
+
+<body id="body-comprar">
 
     {% include 'header.html' %}
 
     <div class="color-cuatro pt-3">
-        <h3 class="pb-1 f-xb color-basico-fw" style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px;">
-            Comprar Acciones
+        <h3 class="pb-1 f-xb color-basico-fw"
+            style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px; display: flex; justify-content: space-between;">
+            <span>Registrar Acciones</span>
+            <span>{{ user.nombres }}</span>
         </h3>
     </div>
 
-    <script src="{% static 'js/seleccionarAcciones.js' %}"></script>
-    
     <section class="container-compra d-flex color-cuatro pt-5">
         <!-- Columna Izquierda: Formulario de Compra -->
-        <form class="info-login flex-column pl-5" method="POST" action="{% url 'compras:comprar_accion' %}">
+        <form class="info-login flex-column pl-5" method="POST" action="{% url 'compras:comprar_accion' %}"
+            onsubmit="return confirmarCompra()">
             {% csrf_token %}
-            <div>
-                <!-- Nombre de la acción -->
-                <label for="nombre" style="color: white;">Nombre Acción</label>
-                <input type="text" name="nombre" id="nombre" class="input-compra" placeholder="Nombre de la acción" required readonly>
-                <br>
-                <!-- Cantidad de acciones -->
-                <label for="cantidad" style="color: white;">Cantidad de Acciones</label>
-                <input type="number" name="cantidad" id="cantidad" class="input-compra" placeholder="Cantidad de acciones" min="1" required>
-                <br>
-
-                <!-- Fecha de compra (nuevo campo) -->
-                <label for="fecha_compra" style="color: white;">Fecha de Compra</label>
-                <input type="date" name="fecha_compra" id="fecha_compra" class="input-compra" required>
-                <br>
-
-                <!-- Precio por acción -->
-                <label for="precio_accion" style="color: white;">Precio por Acción</label>
-                <input type="text" name="precio_accion" id="precio_accion" class="input-compra" placeholder="Precio" readonly>
-                <br>
-                <!-- Costo Total -->
-                <label for="costo_total" style="color: white;">Costo Total</label>
-                <input type="text" name="costo_total" id="costo_total" class="input-compra" placeholder="Costo Total" readonly>
+            <div class="campo">
+                <label class="etiqueta" for="nombre" style="color: white;">Nombre de la Acción</label>
+                <input type="text" name="nombre" id="nombre" class="input-compra" placeholder="Nombre de la acción"
+                    required>
             </div>
-            <div class="boton color-primario color-basico-fw pa-1">
-                <button type="submit" class="color-basico-fb f-b">Comprar</button>
+            <div class="campo">
+                <label class="etiqueta" for="cantidad" style="color: white;">Cantidad de acciones</label>
+                <input type="number" name="cantidad" id="cantidad" class="input-compra"
+                    placeholder="Cantidad de acciones" min="1" step="1" max="100000" required>
+            </div>
+            <div class="campo">
+                <label class="etiqueta" for="fecha_compra" style="color: white;">Fecha de compra</label>
+                <input type="date" name="fecha_compra" id="fecha_compra" class="input-compra"
+                    placeholder="Fecha de compra" max="" min="1900-01-01" required>
+            </div>
+
+            <!-- Nuevos campos no editables -->
+            <div class="campo">
+                <label class="etiqueta" for="precio_accion" style="color: white;">Precio de Acción</label>
+                <input type="number" name="precio_accion" id="precio_accion" class="input-compra"
+                    placeholder="Precio de Acción en la fecha elegida" min="0.001" step="0.001" max="100000" required>
+            </div>
+            <div class="campo">
+                <label class="etiqueta" for="total_compra" style="color: white;">Total</label>
+                <input type="number" id="total_compra" class="input-compra" placeholder="Total" readonly>
+            </div>
+
+            <div>
+                <button type="submit" id="btn-comprar"
+                    class="boton color-primario color-basico-fw pa-1">Registrar</button>
             </div>
         </form>
-    
-        <!-- Columna Derecha: Acciones -->
-        <div class="table-container">
-            <h2>Acciones Disponibles</h2>
-            {% if acciones_disponibles %}
-            <div class="table">
-                {% for accion in acciones_disponibles %}
-                <div class="table-row" 
-                    data-nombre="{{ accion.nombre }}" 
-                    data-empresa="{{ accion.empresa }}">
-                    <div class="info">
-                        {% if accion.imagen %}
-                        <img src="{{ accion.imagen.url }}" alt="{{ accion.nombre }}" class="accion-imagen">
-                        {% endif %}
-                        <div class="symbol">{{ accion.nombre }}</div>
-                        <div class="company">{{ accion.empresa }}</div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <p>No hay acciones disponibles para comprar en este momento.</p>
-            {% endif %}
-        </div>
-        
 
-    </section>
-    
-    {% include 'mensajes.html' %}
-    <script src="{% static 'js/mensajes.js' %}"></script>
+        <!-- Columna Derecha: Tabla con empresas y acciones -->
+
+        <div class="acciones-disponibles">
+            <table class="tabla-acciones">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Empresa</th>
+                        <th>Nombre Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="agregarNombreAccion('GOOGL')">
+                        <td><img src="{% static 'img/google.png' %}" alt="Google" width="50"></td>
+                        <td>Google</td>
+                        <td>GOOGL</td>
+                    </tr>
+                    <tr onclick="agregarNombreAccion('MSFT')">
+                        <td><img src="{% static 'img/microsoft.png' %}" alt="Microsoft" width="50"></td>
+                        <td>Microsoft</td>
+                        <td>MSFT</td>
+                    </tr>
+                    <tr onclick="agregarNombreAccion('TSLA')">
+                        <td><img src="{% static 'img/tesla.png' %}" alt="Tesla" width="50"></td>
+                        <td>Tesla</td>
+                        <td>TSLA</td>
+                    </tr>
+                    <tr onclick="agregarNombreAccion('META')">
+                        <td><img src="{% static 'img/meta.png' %}" alt="Meta" width="50"></td>
+                        <td>Meta (Facebook)</td>
+                        <td>META</td>
+                    </tr>
+                    <tr onclick="agregarNombreAccion('NFLX')">
+                        <td><img src="{% static 'img/netflix.png' %}" alt="Netflix" width="50"></td>
+                        <td>Netflix</td>
+                        <td>NFLX</td>
+                    </tr>
+                    <tr onclick="agregarNombreAccion('NVDA')">
+                        <td><img src="{% static 'img/nvidia.png' %}" alt="NVIDIA" width="50"></td>
+                        <td>NVIDIA</td>
+                        <td>NVDA</td>
+                    </tr>
+                    <tr onclick="agregarNombreAccion('DIS')">
+                        <td><img src="{% static 'img/disney.png' %}" alt="Disney" width="50"></td>
+                        <td>Disney</td>
+                        <td>DIS</td>
+                    </tr>
+                    <tr onclick="agregarNombreAccion('INTC')">
+                        <td><img src="{% static 'img/intel.png' %}" alt="Intel" width="50"></td>
+                        <td>Intel</td>
+                        <td>INTC</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        {% include 'mensajes.html' %}
+        <script src="{% static 'js/compras.js' %}"></script>
+        <script src="{% static 'js/mensajes.js' %}"></script>
+
+        <script>
+            // Función para seleccionar una acción de la tabla
+            function agregarNombreAccion(ticker) {
+                document.getElementById('nombre').value = ticker; // Coloca el ticker en el campo "nombre"
+            }
+        </script>
 </body>
+
 </html>

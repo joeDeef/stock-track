@@ -13,7 +13,7 @@
 
     <section class="container-info d-flex">
         <!-- Columna Izquierda: Formulario de Login -->
-        <div class="imagen-login">
+        <div id="imagen-registrar" class="imagen-login">
             <img src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
         </div>
         <!-- Columna Derecha: Imagen -->
@@ -26,8 +26,8 @@
                     <input type="email" name="email" id="email" class="input-registro" placeholder="Email">
                     <input name="telefono" id="telf" class="input-registro" placeholder="Telefono">
                     <input type="password" name="password" id="pass" class="input-registro" placeholder="Contraseña">
-                    <div class="boton pa-1 borde-1">
-                        <button type="submit" class="color-basico-fw f-b">Crear Cuenta</button>
+                    <div>
+                        <button id="boton-registrar" type="submit" class="boton color-primario">Crear Cuenta</button>
                     </div>
                 </form>
         </div>
