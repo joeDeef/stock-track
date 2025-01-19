@@ -14,19 +14,12 @@ def comprar_accion(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         cantidad = int(request.POST.get('cantidad'))
-        fecha_compra = request.POST.get('fecha_compra')  # Capturamos la fecha de compra
-
-        if not nombre or cantidad <= 0:
-            messages.error(request, 'Por favor, ingrese un nombre válido y una cantidad mayor a 0.')
-            return redirect('compras:comprar_accion')
-
-        if not fecha_compra:
-            messages.error(request, 'Por favor, ingrese una fecha de compra válida.')
-            return redirect('compras:comprar_accion')
+        precio_compra = float(request.POST.get('precio_accion'))
+        fecha_compra = request.POST.get('fecha_compra')
 
         try:
             portafolio = request.user.portafolio
-            precio_compra = StockAPI.obtener_precio_accion_en_fecha(nombre, fecha_compra)
+            StockAPI.obtener_precio_accion_actual(nombre)
 
             # Crear y guardar la nueva acción
             accion = Accion.objects.create(
@@ -40,19 +33,14 @@ def comprar_accion(request):
             # Actualizar el precio actual de la acción
             accion.actualizar_precio()
 
-            messages.success(request, f'Has comprado {cantidad} acciones de {nombre} exitosamente.')
+            messages.success(request, f'Has registrado {cantidad} acción(es) de {nombre} en la fecha {fecha_compra} exitosamente.')
             return redirect('compras:comprar_accion')
 
         except Exception as e:
-            messages.error(request, f'Error al comprar la acción: {str(e)}')
+            messages.error(request, f'Error: No se pudo recuperar el precio de la acción. Por favor, inténtalo de nuevo.')
             return redirect('compras:comprar_accion')
 
-    # Si no es un POST, renderiza el formulario
     return render(request, 'comprar.html')
-
-def compras(request):
-    acciones_disponibles = request.session.get('acciones_disponibles', [])
-    return render(request, 'comprar.html', {'acciones_disponibles': acciones_disponibles})
 
 def obtener_precio_accion(request):
     fecha = request.GET.get("fecha")  # Fecha pasada en la URL, formato YYYY-MM-DD
