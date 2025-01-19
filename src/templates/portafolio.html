@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <link rel="stylesheet" href="{% static 'styles/portafolio.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -17,8 +18,22 @@
             <h1 class="left">Portafolio</h1>
             <h1 class="right">{{ user.nombres }}</h1>
         </div>
+<<<<<<< Updated upstream
         
         <hr>
+=======
+            
+        <div class="sorting-options" style="margin: 20px 50px; display: flex; align-items: center;">
+            <label for="sort-by" style="margin-right: 10px; font-family: 'MontserratBold'; color: #aaaaab;">Ordenar por:</label>
+            <select id="sort-by" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight';">
+                <option value="nombre-asc">Nombre (Ascendente)</option>
+                <option value="nombre-desc">Nombre (Descendente)</option>
+                <option value="rendimiento-asc">Ganancia/Perdida (Ascendente)</option>
+                <option value="rendimiento-desc">Ganancia/Perdida (Descendente)</option>
+            </select>
+        </div>
+
+>>>>>>> Stashed changes
         {% if mensaje %}
     <p>{{ mensaje }}</p>
     {% else %}
@@ -36,7 +51,7 @@
                 <th>Porcentaje de Ganancia/Perdida</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="portafolio-body">
             {% for accion in acciones_portafolio %}
             <tr>
                 <td>{{ accion.nombre }}</td>
@@ -77,5 +92,31 @@
 
     {% include 'mensajes.html' %}
     <script src="{% static 'js/mensajes.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sort-by').change(function() {
+                var sortBy = $(this).val();
+                var rows = $('#portafolio-body tr').get();
+                rows.sort(function(a, b) {
+                    var A, B;
+                    if (sortBy.includes('nombre')) {
+                        A = $(a).children('td').eq(0).text().toUpperCase();
+                        B = $(b).children('td').eq(0).text().toUpperCase();
+                    } else {
+                        A = parseFloat($(a).children('td').eq(7).text());
+                        B = parseFloat($(b).children('td').eq(7).text());
+                    }
+                    if (sortBy.includes('asc')) {
+                        return (A < B) ? -1 : (A > B) ? 1 : 0;
+                    } else {
+                        return (A > B) ? -1 : (A < B) ? 1 : 0;
+                    }
+                });
+                $.each(rows, function(index, row) {
+                    $('#portafolio-body').append(row);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
