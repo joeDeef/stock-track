@@ -37,7 +37,7 @@ def iniciar_sesion(request):
         if user:
             login(request, user)
             messages.success(request, 'Inicio de sesión exitoso.')
-            return redirect('/compras/')
+            return redirect('/registro/')
         messages.error(request, 'Correo electrónico o contraseña incorrectos.')
     return redirect('usuarios:login')
 
