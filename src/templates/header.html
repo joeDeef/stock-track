@@ -10,7 +10,7 @@
             {% if user.is_authenticated %}
                 <!-- Si el usuario está autenticado, mostramos las siguientes opciones -->
                 <li class="pa-1"><a class="color-basico-fb" href="{% url 'usuarios:perfil' %}">Perfil</a></li>
-                <li class="pa-1"><a class="color-basico-fb" href="{% url 'compras:compras' %}">Comprar</a></li>
+                <li class="pa-1"><a class="color-basico-fb" href="{% url 'compras:compras' %}">Registrar</a></li>
                 <li class="pa-1"><a class="color-basico-fb" href="{% url 'portafolio:portafolio' %}">Portafolio</a></li>
             {% endif %}
         </ul>
