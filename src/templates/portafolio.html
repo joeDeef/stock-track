@@ -14,14 +14,18 @@
     {% include 'header.html' %}
 
     <div class="container">
-        <div class="header">
-            <h1 class="left">Portafolio</h1>
-            <h1 class="right">{{ user.nombres }}</h1>
+        <div class="color-cuatro pt-3">
+            <h3 class="pb-1 f-xb color-basico-fw"
+                style="border-bottom: 2px solid #ccc; margin-left: 50px; margin-right: 50px; display: flex; justify-content: space-between;">
+                <span>Portafolio</span>
+                <span>{{ user.nombres }}</span>
+            </h3>
         </div>
             
         <div class="sorting-options" style="margin: 20px 50px; display: flex; align-items: center;">
             <label for="sort-by" style="margin-right: 10px; font-family: 'MontserratBold'; color: #aaaaab;">Ordenar por:</label>
-            <select id="sort-by" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight';">
+            <select id="sort-by" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight'; ">
+                <option value="">Seleccionar...</option>
                 <option value="nombre-asc">Nombre (Ascendente)</option>
                 <option value="nombre-desc">Nombre (Descendente)</option>
                 <option value="rendimiento-asc">Ganancia/Perdida (Ascendente)</option>

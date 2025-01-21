@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    color: #333;
+}
+
+
+.imagen-rectangular {
+    position: relative;
+    width: 100%;
+    /* Ajusta el tamaño según sea necesario */
+    height: 345px;
+    /* Ajusta el tamaño según sea necesario */
+    overflow: hidden;
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.imagen-rectangular img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+
+}
+
+#texto_nosotros {
+    padding-top: 55px;
+    font-size: 20px;
+    max-width: 88%;
+    font-weight: lighter;
+    font-family: 'Nunito Sans', sans-serif;
+    animation: slideIn 1s ease-in-out;
+}
+
+.titulo {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    position: absolute;
+    top: 175px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 38px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.content {
+    position: absolute;
+    top: 170px;
+    /* Ajusta según sea necesario */
+    left: 50px;
+    width: 90%;
+    text-align: center;
+    padding: 40px;
+    background-color: none;
+    z-index: 1;
+
+}
+
+.content .circle {
+    background-color: #22293D;
+    color: white;
+    border-radius: 50%;
+    width: 475px;
+    height: 475px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 10px solid #ffffff;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    animation: grow 1.5s ease-in-out;
+}
+
+.section {
+    display: flex;
+
+    justify-content: space-around;
+    padding: 13.5px;
+    background-color: white;
+}
+
+#seccion-principal {
+
+    height: 250px;
+    position: relative;
+    background: url("/static/images/fondo_curvo.svg") no-repeat center center;
+    z-index: 3;
+    background-size: cover, contain;
+    overflow: hidden;
+    
+}
+
+
+
+
+.titulo-icono {
+    display: flex;
+    align-items: center;
+    /* Alinea verticalmente el título y el icono */
+    justify-content: center;
+    /* Centra el título y el icono */
+}
+
+.icono {
+    height: 50px;
+    width: 50px;
+    animation: slideIn 2s linear ;
+}
+
+.section div {
+    max-width: 400px;
+    text-align: center;
+}
+
+#mision {
+    padding-right: 300px;
+}
+
+#vision {
+    padding-left: 300px;
+}
+
+.titulo2 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    font-size: 38px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-right: 15px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+p {
+    font-size: 20px;
+    font-weight: 300;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+#texto_footer {
+    position: absolute; /* Cambiado a absolute */
+    z-index: 10; /* Asegúrate de que sea mayor que el z-index de #seccion-principal */
+    color: white;
+    bottom: 8px; /* Ajusta según sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer {
+    text-align: center;
+    animation: slideUp 2s ease;
+}
+
+@media (min-width: 1919px) {
+    .section {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .titulo-icono {
+        flex-direction: row;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes grow {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

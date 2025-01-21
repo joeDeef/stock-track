@@ -5,7 +5,7 @@
         <div class="logo"></div>
         <ul class="letra-normal pl-1 d-flex">
             <li class="pa-1"><a class="color-basico-fb" href="{% url 'inicio' %}">Inicio</a></li>
-            <li class="pa-1"><a class="color-basico-fb" href="#">Nosotros</a></li>
+            <li class="pa-1"><a class="color-basico-fb" href="{% url 'nosotros:nosotros' %}">Nosotros</a></li>
 
             {% if user.is_authenticated %}
                 <!-- Si el usuario está autenticado, mostramos las siguientes opciones -->

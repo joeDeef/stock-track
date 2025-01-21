@@ -9,6 +9,9 @@ from django.contrib.auth.hashers import check_password
 def get_login(request):
     return render(request, 'login.html')
 
+def nosotros(request):
+    return render(request, 'nosotros.html')
+
 def get_signup(request):
     return render(request, 'registrar.html')
 
