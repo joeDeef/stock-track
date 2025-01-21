@@ -31,46 +31,48 @@
         <h3 id="titulo-datos">Datos Personales</h3>
         <form action="{% url 'usuarios:updatePerfil' %}" method="POST">
             {% csrf_token %}
-    
+
             <div class="form-group">
                 <label for="nombre">Nombre completo:</label>
                 <input type="text" id="nombre" name="nombre" value="{{ usuario.nombres }}" required>
             </div>
-    
+
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="{{ usuario.email }}" required>
             </div>
-    
+
             <div class="form-group">
                 <label for="contraseña_actual">Contraseña Actual:</label>
                 <div>
                     <input type="password" id="contraseña_actual" name="contraseña_actual" required>
-                    <button type="button" class="toggle-password" data-input="contraseña_actual" data-show-src="{% static 'img/ojo.png' %}" data-hide-src="{% static 'img/ojo-cerrado.png' %}">
+                    <button type="button" class="toggle-password" data-input="contraseña_actual"
+                        data-show-src="{% static 'img/ojo.png' %}" data-hide-src="{% static 'img/ojo-cerrado.png' %}">
                         <img src="{% static 'img/ojo.png' %}" alt="Mostrar">
                     </button>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label for="nueva_contraseña">Nueva Contraseña:</label>
                 <div>
                     <input type="password" id="nueva_contraseña" name="nueva_contraseña" required>
-                    <button type="button" class="toggle-password" data-input="nueva_contraseña" data-show-src="{% static 'img/ojo.png' %}" data-hide-src="{% static 'img/ojo-cerrado.png' %}">
+                    <button type="button" class="toggle-password" data-input="nueva_contraseña"
+                        data-show-src="{% static 'img/ojo.png' %}" data-hide-src="{% static 'img/ojo-cerrado.png' %}">
                         <img src="{% static 'img/ojo.png' %}" alt="Mostrar">
                     </button>
                 </div>
             </div>
-    
+
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
                 <input type="tel" id="telefono" name="telefono" value="{{ usuario.telefono }}" required>
             </div>
-    
+
             <button type="submit" class="btn-actualizar">Actualizar</button>
         </form>
     </div>
-    
+
 
     {% include 'mensajes.html' %}
     <script src="{% static 'js/passwordToggle.js' %}"></script>

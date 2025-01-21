@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'styles/portafolio.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
 
     {% include 'header.html' %}
@@ -21,10 +23,12 @@
                 <span>{{ user.nombres }}</span>
             </h3>
         </div>
-            
+
         <div class="sorting-options" style="margin: 20px 50px; display: flex; align-items: center;">
-            <label for="sort-by" style="margin-right: 10px; font-family: 'MontserratBold'; color: #aaaaab;">Ordenar por:</label>
-            <select id="sort-by" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight'; ">
+            <label for="sort-by" style="margin-right: 10px; font-family: 'MontserratBold'; color: #aaaaab;">Ordenar
+                por:</label>
+            <select id="sort-by"
+                style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight'; ">
                 <option value="">Seleccionar...</option>
                 <option value="nombre-asc">Nombre (Ascendente)</option>
                 <option value="nombre-desc">Nombre (Descendente)</option>
@@ -34,69 +38,69 @@
         </div>
 
         {% if mensaje %}
-    <p>{{ mensaje }}</p>
-    {% else %}
-    <table class="tabla-portafolio">
-        <thead>
-            <tr>
-                <th>Acción</th>
-                <th>Número de Acciones</th>
-                <th>Fecha de Compra</th>
-                <th>Costo de Compra por Acción</th>
-                <th>Precio Actual</th>
-                <th>Costo Total</th>
-                <th>Costo Mercado Total</th>
-                <th>Ganancia/Perdida</th>
-                <th>Porcentaje de Ganancia/Perdida</th>
-            </tr>
-        </thead>
-        <tbody id="portafolio-body">
-            {% for accion in acciones_portafolio %}
-            <tr>
-                <td>{{ accion.nombre }}</td>
-                <td>{{ accion.cantidad }}</td>
-                <td>{{ accion.fecha_compra }}</td>
-                <td>{{ accion.precio_compra|floatformat:3 }}</td>
-                <td>{{ accion.precio_actual|floatformat:3 }}</td>                
-                <td>{{ accion.costo_total|floatformat:2 }}</td>
-                <td>{{ accion.costo_mercado_total|floatformat:2 }}</td>
-                <td>
-                    {% if accion.obtener_rendimiento_dolares >= 0 %}
+        <p>{{ mensaje }}</p>
+        {% else %}
+        <table class="tabla-portafolio">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Número de Acciones</th>
+                    <th>Fecha de Compra</th>
+                    <th>Costo de Compra por Acción</th>
+                    <th>Precio Actual</th>
+                    <th>Costo Total</th>
+                    <th>Costo Mercado Total</th>
+                    <th>Ganancia/Perdida</th>
+                    <th>Porcentaje de Ganancia/Perdida</th>
+                </tr>
+            </thead>
+            <tbody id="portafolio-body">
+                {% for accion in acciones_portafolio %}
+                <tr>
+                    <td>{{ accion.nombre }}</td>
+                    <td>{{ accion.cantidad }}</td>
+                    <td>{{ accion.fecha_compra }}</td>
+                    <td>{{ accion.precio_compra|floatformat:3 }}</td>
+                    <td>{{ accion.precio_actual|floatformat:3 }}</td>
+                    <td>{{ accion.costo_total|floatformat:2 }}</td>
+                    <td>{{ accion.costo_mercado_total|floatformat:2 }}</td>
+                    <td>
+                        {% if accion.obtener_rendimiento_dolares >= 0 %}
                         <span style="color: green;">+{{ accion.obtener_rendimiento_dolares|floatformat:2 }}</span>
-                    {% else %}
+                        {% else %}
                         <span style="color: red;">{{ accion.obtener_rendimiento_dolares|floatformat:2 }}</span>
-                    {% endif %}
-                </td>
-            
-                <td>
-                    {% if accion.obtener_rendimiento_porcentaje >= 0 %}
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if accion.obtener_rendimiento_porcentaje >= 0 %}
                         <span style="color: green;">+{{ accion.obtener_rendimiento_porcentaje|floatformat:2 }}%</span>
-                    {% else %}
+                        {% else %}
                         <span style="color: red;">{{ accion.obtener_rendimiento_porcentaje|floatformat:2 }}%</span>
-                    {% endif %}
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="10">No tienes acciones en tu portafolio.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10">No tienes acciones en tu portafolio.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
 
-    {% endif %}
-    
+        {% endif %}
+
     </div>
 
     {% include 'mensajes.html' %}
     <script src="{% static 'js/mensajes.js' %}"></script>
     <script>
-        $(document).ready(function() {
-            $('#sort-by').change(function() {
+        $(document).ready(function () {
+            $('#sort-by').change(function () {
                 var sortBy = $(this).val();
                 var rows = $('#portafolio-body tr').get();
-                rows.sort(function(a, b) {
+                rows.sort(function (a, b) {
                     var A, B;
                     if (sortBy.includes('nombre')) {
                         A = $(a).children('td').eq(0).text().toUpperCase();
@@ -111,11 +115,12 @@
                         return (A > B) ? -1 : (A < B) ? 1 : 0;
                     }
                 });
-                $.each(rows, function(index, row) {
+                $.each(rows, function (index, row) {
                     $('#portafolio-body').append(row);
                 });
             });
         });
     </script>
 </body>
+
 </html>

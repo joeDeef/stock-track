@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    {% load static %}  <!-- Cargamos las etiquetas estáticas -->
+    {% load static %} <!-- Cargamos las etiquetas estáticas -->
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <style>
         #seccion-principal {
@@ -15,6 +16,7 @@
         }
     </style>
 </head>
+
 <body>
     {% include 'header.html' %}
 
@@ -24,9 +26,11 @@
         <!-- Contenido Izquierdo -->
         <div class="info-texto pl-5">
             <div class="logo-completo pb-1"></div>
-            <h2 id="titulo-portada" class="color-terciario-fuente">¡Invierte al instante, donde quieras y cuando quieras!</h2>
+            <h2 id="titulo-portada" class="color-terciario-fuente">¡Invierte al instante, donde quieras y cuando
+                quieras!</h2>
             <p id="mi-parrafo-especifico" class="color-terciario-fuente pt-1 pb-3">
-                Invertir nunca fue tan sencillo: todo lo que necesitas en la plataforma de inversión definitiva, accesible desde cualquier dispositivo.
+                Invertir nunca fue tan sencillo: todo lo que necesitas en la plataforma de inversión definitiva,
+                accesible desde cualquier dispositivo.
             </p>
             {% if not user.is_authenticated %}
             <!-- Botones visibles solo si el usuario NO está autenticado -->
@@ -46,4 +50,5 @@
         </div>
     </section>
 </body>
+
 </html>
