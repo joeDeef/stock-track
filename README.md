@@ -1,8 +1,8 @@
 # Stock Track: Documentación
 
 ## Versión
-- **Versión**: 1.0
-- **Fecha de última actualización**: 23 de noviembre de 2024
+- **Versión**: 2.0
+- **Fecha de última actualización**: 25 de Enero de 2025
 - **Descripción**: Esta es la versión inicial de la documentación del proyecto **Stock Track**.
 
 ## Descripción General
@@ -26,3 +26,4 @@ La documentación proporciona información detallada sobre:
 - **/requerimientos**: Requerimientos del cliente para el proyecto.
 - **/pruebas**: Casos de prueba para el proyecto basado en los requerimientos.
 - **/diagramas**: Diagramas utilizados para el desarrollo del proyecto.
+- **/solicitud de cambios**: Solicitudes de Cambios del Proyecto 
