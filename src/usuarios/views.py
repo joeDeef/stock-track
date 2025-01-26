@@ -9,6 +9,9 @@ from django.contrib.auth.hashers import check_password
 def get_login(request):
     return render(request, 'login.html')
 
+def nosotros(request):
+    return render(request, 'nosotros.html')
+
 def get_signup(request):
     return render(request, 'registrar.html')
 
@@ -37,7 +40,7 @@ def iniciar_sesion(request):
         if user:
             login(request, user)
             messages.success(request, 'Inicio de sesión exitoso.')
-            return redirect('/compras/')
+            return redirect('/registro/')
         messages.error(request, 'Correo electrónico o contraseña incorrectos.')
     return redirect('usuarios:login')
 
