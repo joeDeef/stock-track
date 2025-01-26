@@ -35,12 +35,15 @@
                 <option value="rendimiento-asc">Ganancia/Perdida (Ascendente)</option>
                 <option value="rendimiento-desc">Ganancia/Perdida (Descendente)</option>
             </select>
+            <button id="toggleConsolidar" style="margin-left: 20px; padding: 10px 20px; font-family: 'SFUIDisplayLight'; border: none; background-color: #4CAF50; color: white; cursor: pointer;">
+                Consolidar
+            </button>
         </div>
 
         {% if mensaje %}
         <p>{{ mensaje }}</p>
         {% else %}
-        <table class="tabla-portafolio">
+        <table class="tabla-portafolio" id="tabla-original">
             <thead>
                 <tr>
                     <th>Acción</th>
@@ -88,7 +91,49 @@
             </tbody>
         </table>
 
+        <!-- Consolidado -->
+        <table class="tabla-portafolio" id="tabla-consolidada" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Número de Acciones Totales</th>
+                    <th>Valor USD</th>
+                    <th>Precio de Costo</th>
+                    <th>Ganancia/Perdida</th>
+                    <th>Porcentaje de Ganancia/Perdida</th>
+                </tr>
+            </thead>
+            <tbody id="portafolio-consolidado-body">
+                {% for accion in acciones_consolidadas %}
+                <tr>
+                    <td>{{ accion.nombre }}</td>
+                    <td>{{ accion.cantidad }}</td>
+                    <td>{{ accion.precio_compra|floatformat:3 }}</td>
+                    <td>{{ accion.precio_costo|floatformat:3 }}</td>
+                    <td>
+                        {% if accion.rendimiento_dolares >= 0 %}
+                        <span style="color: green;">+{{ accion.rendimiento_dolares|floatformat:2 }}</span>
+                        {% else %}
+                        <span style="color: red;">{{ accion.rendimiento_dolares|floatformat:2 }}</span>
+                        {% endif %}
+                    </td>
 
+                    <td>
+                        {% if accion.rendimiento_porcentaje >= 0 %}
+                        <span style="color: green;">+{{ accion.rendimiento_porcentaje|floatformat:2 }}%</span>
+                        {% else %}
+                        <span style="color: red;">{{ accion.rendimiento_porcentaje|floatformat:2 }}%</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No tienes acciones en tu portafolio.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+            
         {% endif %}
 
     </div>
@@ -118,6 +163,20 @@
                 $.each(rows, function (index, row) {
                     $('#portafolio-body').append(row);
                 });
+            });
+
+            $('#toggleConsolidar').click(function () {
+                var tablaOriginal = $('#tabla-original');
+                var tablaConsolidada = $('#tabla-consolidada');
+                if (tablaConsolidada.is(':visible')) {
+                    tablaConsolidada.hide();
+                    tablaOriginal.show();
+                    $(this).text('Consolidar');
+                } else {
+                    tablaOriginal.hide();
+                    tablaConsolidada.show();
+                    $(this).text('Regresar');
+                }
             });
         });
     </script>
