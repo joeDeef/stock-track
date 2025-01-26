@@ -5,9 +5,9 @@ body {
 }
 
 .tabla-portafolio {
-    width: 80%; /* Ajusta el porcentaje según lo que necesites */
-    margin: 20px auto; /* Centra la tabla y agrega márgenes superior e inferior */
-    padding: 20px; /* Espaciado interno de la tabla */
+    width: 60%; /* Reduced width to make space for the pie chart */
+    margin: 20px auto; /* Center the table and add top and bottom margins */
+    padding: 20px; /* Internal spacing of the table */
     border-collapse: collapse;
     background-color: transparent;
     color: #aaaaab;
@@ -17,7 +17,7 @@ body {
 
 .tabla-portafolio th, .tabla-portafolio td {
     padding: 12px;
-    text-align: left;
+    text-align: center; /* Center the table elements */
     border: none;
 }
 

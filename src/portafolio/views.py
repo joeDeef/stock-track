@@ -39,12 +39,14 @@ def get_consolidacion(portafolio):
     consolidated_list = []
     for nombre, data in consolidated_accions.items():
         consolidated_list.append({
-            'nombre': nombre,
-            'cantidad': data['cantidad'],
-            'precio_compra': data['precio_compra'],
-            'precio_costo': round(data['precio_compra'] / data['cantidad'] , 2),
-            'rendimiento_dolares': data['rendimiento_dolares'],
-            'rendimiento_porcentaje': round((data['rendimiento_dolares'] * 100) / data['precio_compra'] , 2)
+            "nombre": nombre,
+            "cantidad": data["cantidad"],
+            "precio_compra": data["precio_compra"],
+            "precio_costo": round(data["precio_compra"] / data["cantidad"], 2),
+            "rendimiento_dolares": data["rendimiento_dolares"],
+            "rendimiento_porcentaje": round(
+                (data["rendimiento_dolares"] * 100) / data["precio_compra"], 2
+            ),
         })
 
     return consolidated_list

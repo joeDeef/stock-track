@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <link rel="stylesheet" href="{% static 'styles/portafolio.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -24,21 +25,23 @@
             </h3>
         </div>
 
-        <div class="sorting-options" style="margin: 20px 50px; display: flex; align-items: center;">
-            <label for="sort-by" style="margin-right: 10px; font-family: 'MontserratBold'; color: #aaaaab;">Ordenar
-                por:</label>
-            <select id="sort-by"
-                style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight'; ">
-                <option value="">Seleccionar...</option>
-                <option value="nombre-asc">Nombre (Ascendente)</option>
-                <option value="nombre-desc">Nombre (Descendente)</option>
-                <option value="rendimiento-asc">Ganancia/Perdida (Ascendente)</option>
-                <option value="rendimiento-desc">Ganancia/Perdida (Descendente)</option>
-            </select>
-            <button id="toggleConsolidar" style="margin-left: 20px; padding: 10px 20px; font-family: 'SFUIDisplayLight'; border: none; background-color: #4CAF50; color: white; cursor: pointer;">
+        <div id="sorting-and-toggle" style="display: flex; align-items: center; margin: 20px 50px;">
+            <div id="sorting-options" class="sorting-options" style="margin-right: 10px; display: flex; align-items: center;">
+                <label for="sort-by" style="margin-right: 10px; font-family: 'MontserratBold'; color: #aaaaab;">Ordenar por:</label>
+                <select id="sort-by" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight';">
+                    <option value="">Seleccionar...</option>
+                    <option value="nombre-asc">Nombre (Ascendente)</option>
+                    <option value="nombre-desc">Nombre (Descendente)</option>
+                    <option value="rendimiento-asc">Ganancia/Perdida (Ascendente)</option>
+                    <option value="rendimiento-desc">Ganancia/Perdida (Descendente)</option>
+                </select>
+            </div>
+        
+            <button id="toggleConsolidar" style="padding: 10px 30px; font-family: 'SFUIDisplayLight'; border: none; background-color: #3193e2; color: white; cursor: pointer; margin-left: 10px;">
                 Consolidar
             </button>
         </div>
+        
 
         {% if mensaje %}
         <p>{{ mensaje }}</p>
@@ -54,7 +57,7 @@
                     <th>Costo Total</th>
                     <th>Costo Mercado Total</th>
                     <th>Ganancia/Perdida</th>
-                    <th>Porcentaje de Ganancia/Perdida</th>
+                    <th>Porcentaje de G/P</th>
                 </tr>
             </thead>
             <tbody id="portafolio-body">
@@ -69,17 +72,17 @@
                     <td>{{ accion.costo_mercado_total|floatformat:2 }}</td>
                     <td>
                         {% if accion.obtener_rendimiento_dolares >= 0 %}
-                        <span style="color: green;">+{{ accion.obtener_rendimiento_dolares|floatformat:2 }}</span>
+                        <span style="color: lightgreen;">+{{ accion.obtener_rendimiento_dolares|floatformat:2 }}</span>
                         {% else %}
-                        <span style="color: red;">{{ accion.obtener_rendimiento_dolares|floatformat:2 }}</span>
+                        <span style="color: lightcoral;">{{ accion.obtener_rendimiento_dolares|floatformat:2 }}</span>
                         {% endif %}
                     </td>
 
                     <td>
                         {% if accion.obtener_rendimiento_porcentaje >= 0 %}
-                        <span style="color: green;">+{{ accion.obtener_rendimiento_porcentaje|floatformat:2 }}%</span>
+                        <span style="color: lightgreen;">+{{ accion.obtener_rendimiento_porcentaje|floatformat:2 }}%</span>
                         {% else %}
-                        <span style="color: red;">{{ accion.obtener_rendimiento_porcentaje|floatformat:2 }}%</span>
+                        <span style="color: lightcoral;">{{ accion.obtener_rendimiento_porcentaje|floatformat:2 }}%</span>
                         {% endif %}
                     </td>
                 </tr>
@@ -92,47 +95,52 @@
         </table>
 
         <!-- Consolidado -->
-        <table class="tabla-portafolio" id="tabla-consolidada" style="display: none;">
-            <thead>
-                <tr>
-                    <th>Acción</th>
-                    <th>Número de Acciones Totales</th>
-                    <th>Valor USD</th>
-                    <th>Precio de Costo</th>
-                    <th>Ganancia/Perdida</th>
-                    <th>Porcentaje de Ganancia/Perdida</th>
-                </tr>
-            </thead>
-            <tbody id="portafolio-consolidado-body">
-                {% for accion in acciones_consolidadas %}
-                <tr>
-                    <td>{{ accion.nombre }}</td>
-                    <td>{{ accion.cantidad }}</td>
-                    <td>{{ accion.precio_compra|floatformat:3 }}</td>
-                    <td>{{ accion.precio_costo|floatformat:3 }}</td>
-                    <td>
-                        {% if accion.rendimiento_dolares >= 0 %}
-                        <span style="color: green;">+{{ accion.rendimiento_dolares|floatformat:2 }}</span>
-                        {% else %}
-                        <span style="color: red;">{{ accion.rendimiento_dolares|floatformat:2 }}</span>
-                        {% endif %}
-                    </td>
+        <div style="display: flex; justify-content: center;">
+            <table class="tabla-portafolio" id="tabla-consolidada" style="display: none; margin-left: 60px;">
+                <thead>
+                    <tr>
+                        <th>Acción</th>
+                        <th>Acciones Totales</th>
+                        <th>Valor USD</th>
+                        <th>Precio de Costo</th>
+                        <th>Ganancia/Perdida</th>
+                        <th>Porcentaje de G/P</th>
+                    </tr>
+                </thead>
+                <tbody id="portafolio-consolidado-body">
+                    {% for accion in acciones_consolidadas %}
+                    <tr>
+                        <td>{{ accion.nombre }}</td>
+                        <td>{{ accion.cantidad }}</td>
+                        <td>{{ accion.precio_compra|floatformat:3 }}</td>
+                        <td>{{ accion.precio_costo|floatformat:3 }}</td>
+                        <td>
+                            {% if accion.rendimiento_dolares >= 0 %}
+                            <span style="color: lightgreen;">+{{ accion.rendimiento_dolares|floatformat:2 }}</span>
+                            {% else %}
+                            <span style="color: lightcoral;">{{ accion.rendimiento_dolares|floatformat:2 }}</span>
+                            {% endif %}
+                        </td>
 
-                    <td>
-                        {% if accion.rendimiento_porcentaje >= 0 %}
-                        <span style="color: green;">+{{ accion.rendimiento_porcentaje|floatformat:2 }}%</span>
-                        {% else %}
-                        <span style="color: red;">{{ accion.rendimiento_porcentaje|floatformat:2 }}%</span>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="6">No tienes acciones en tu portafolio.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                        <td>
+                            {% if accion.rendimiento_porcentaje >= 0 %}
+                            <span style="color: lightgreen;">+{{ accion.rendimiento_porcentaje|floatformat:2 }}%</span>
+                            {% else %}
+                            <span style="color: lightcoral;">{{ accion.rendimiento_porcentaje|floatformat:2 }}%</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">No tienes acciones en tu portafolio.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div style="width: 70%;" id="chart-container">
+                <canvas id="accionesChart"></canvas>
+            </div>
+        </div>
             
         {% endif %}
 
@@ -168,16 +176,84 @@
             $('#toggleConsolidar').click(function () {
                 var tablaOriginal = $('#tabla-original');
                 var tablaConsolidada = $('#tabla-consolidada');
+                var chartContainer = $('#chart-container');
+                var sortingOptions = $('#sorting-options');
                 if (tablaConsolidada.is(':visible')) {
                     tablaConsolidada.hide();
+                    chartContainer.hide();
                     tablaOriginal.show();
+                    sortingOptions.show();
                     $(this).text('Consolidar');
                 } else {
                     tablaOriginal.hide();
+                    chartContainer.show();
                     tablaConsolidada.show();
-                    $(this).text('Regresar');
+                    sortingOptions.hide();
+                    $(this).text('Restaurar');
                 }
             });
+
+            function renderChart() {
+                var ctx = document.getElementById('accionesChart').getContext('2d');
+                const acciones =  {{ acciones_consolidadas|safe }};
+                if (acciones.length === 0) {
+                    $('#chart-container').hide();
+                    return;
+                }
+                var nombres = [];
+                var cantidades = [];
+                var precios = [];
+                acciones.forEach((accion) => { 
+                    nombres.push(accion.nombre);
+                    cantidades.push(accion.cantidad);
+                    precios.push(accion.precio_compra);
+                });
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: nombres,
+                        datasets: [{
+                            data: cantidades,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 255, 255, 1)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom' 
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        var label = context.label || '';
+                                        var value = context.raw || 0;
+                                        var total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                        var percentage = ((value / total) * 100).toFixed(2);
+                                        var precioCompra = precios[context.dataIndex];
+                                        return `${value} acciones,  \$${precioCompra}, ${percentage}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            $('#chart-container').hide();
+            renderChart();
         });
     </script>
 </body>
