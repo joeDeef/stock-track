@@ -4,14 +4,24 @@
     <div class="barra f-left d-flex pl-1">
         <div class="logo"></div>
         <ul class="letra-normal pl-1 d-flex">
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'inicio' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Inicio</a></li>
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'nosotros:nosotros' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Nosotros</a></li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/' %}selected{% endif %}" href="{% url 'inicio' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Inicio</a>
+            </li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/nosotros/' %}selected{% endif %}" href="{% url 'nosotros:nosotros' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Nosotros</a>
+            </li>
 
             {% if user.is_authenticated %}
             <!-- Si el usuario está autenticado, mostramos las siguientes opciones -->
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'usuarios:perfil' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Perfil</a></li>
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'compras:compras' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Registrar</a></li>
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'portafolio:portafolio' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Portafolio</a></li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/usuarios/perfil/' %}selected{% endif %}" href="{% url 'usuarios:perfil' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Perfil</a>
+            </li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/registro/' %}selected{% endif %}" href="{% url 'compras:compras' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Registrar</a>
+            </li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/portafolio/' %}selected{% endif %}" href="{% url 'portafolio:portafolio' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Portafolio</a>
+            </li>
             {% endif %}
         </ul>
     </div>
