@@ -1,0 +1,57 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Código de error */
+h1 {
+    font-size: 80px;
+    margin: 0;
+    color: #e74c3c;
+}
+
+/* Mensaje principal */
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Texto descriptivo */
+p {
+    font-size: 18px;
+    color: #777;
+}
+
+/* Botón de regreso */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: white;
+    background-color: #e74c3c;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #c0392b;
+}

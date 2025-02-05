@@ -1,17 +1,27 @@
 {% load static %}
 
-<header class="color-secundario d-flex justify-sb">
+<header class="color-secundario d-flex justify-sb" style="font-family: 'Marvel', sans-serif;">
     <div class="barra f-left d-flex pl-1">
         <div class="logo"></div>
         <ul class="letra-normal pl-1 d-flex">
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'inicio' %}">Inicio</a></li>
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'nosotros:nosotros' %}">Nosotros</a></li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/' %}selected{% endif %}" href="{% url 'inicio' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Inicio</a>
+            </li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/nosotros/' %}selected{% endif %}" href="{% url 'nosotros:nosotros' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Nosotros</a>
+            </li>
 
             {% if user.is_authenticated %}
             <!-- Si el usuario está autenticado, mostramos las siguientes opciones -->
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'usuarios:perfil' %}">Perfil</a></li>
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'compras:compras' %}">Registrar</a></li>
-            <li class="pa-1"><a class="color-basico-fb" href="{% url 'portafolio:portafolio' %}">Portafolio</a></li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/usuarios/perfil/' %}selected{% endif %}" href="{% url 'usuarios:perfil' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Perfil</a>
+            </li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/registro/' %}selected{% endif %}" href="{% url 'compras:compras' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Registrar</a>
+            </li>
+            <li class="pa-1">
+                <a class="color-basico-fb {% if request.path == '/portafolio/' %}selected{% endif %}" href="{% url 'portafolio:portafolio' %}" style="font-family: 'Marvel', sans-serif; font-size: 26px;">Portafolio</a>
+            </li>
             {% endif %}
         </ul>
     </div>
@@ -24,7 +34,7 @@
         </div>
         <form action="{% url 'usuarios:logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit" class="boton color-primario pa-1 color-basico-fw">Cerrar Sesión</button>
+            <button type="submit" class="boton color-primario pa-1 color-basico-fw" style="font-family: 'Nunito Sans', sans-serif; font-size: 14px; font-weight: bold;">Cerrar Sesión</button>
         </form>
 
         {% else %}

@@ -4,11 +4,15 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from compras.models import StockAPI, Accion
 from django.http import JsonResponse
+from django.template import TemplateDoesNotExist
 
 def compras(request):
-    acciones_disponibles = request.session.get('acciones_disponibles', [])
-    return render(request, 'comprar.html', {'acciones_disponibles': acciones_disponibles})
-
+    try:
+        acciones_disponibles = request.session.get('acciones_disponibles', [])
+        return render(request, 'comprar.html', {'acciones_disponibles': acciones_disponibles})
+    except TemplateDoesNotExist:
+        return render(request, 'error.html', status=404)
+    
 @login_required
 def comprar_accion(request):
     if request.method == 'POST':
@@ -40,8 +44,11 @@ def comprar_accion(request):
             messages.error(request, f'Error: No se pudo recuperar el precio de la acción. Por favor, inténtalo de nuevo.')
             return redirect('compras:comprar_accion')
 
-    return render(request, 'comprar.html')
-
+    try:
+        return render(request, 'comprar.html')
+    except TemplateDoesNotExist:
+        return render(request, 'error.html', status=404)
+    
 def obtener_precio_accion(request):
     fecha = request.GET.get("fecha")  # Fecha pasada en la URL, formato YYYY-MM-DD
     ticker = request.GET.get("nombre_accion")  # Ticker de la acción, puedes obtenerlo desde el request si es necesario

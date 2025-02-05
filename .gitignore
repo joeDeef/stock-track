@@ -1,1 +1,4 @@
 /amb/
+
+__pycache__/
+*.py[cod]
