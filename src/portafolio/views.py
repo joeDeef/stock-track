@@ -4,6 +4,7 @@ from django.http import Http404
 from .models import Portafolio
 from collections import defaultdict
 from compras.models import Accion
+from django.template import TemplateDoesNotExist
 
 @login_required
 def get_portafolio(request):
@@ -16,15 +17,22 @@ def get_portafolio(request):
             accion.costo_total = round(accion.precio_compra * accion.cantidad, 2)
             accion.costo_mercado_total = round(accion.precio_actual * accion.cantidad, 2)
 
-        return render(request, 'portafolio.html', {
-            'acciones_portafolio': acciones_portafolio,
-            'acciones_consolidadas' : get_consolidacion(portafolio)
-        })
+        try:
+            return render(request, 'portafolio.html', {
+                'acciones_portafolio': acciones_portafolio,
+                'acciones_consolidadas' : get_consolidacion(portafolio)
+            })
+        except TemplateDoesNotExist:
+            return render(request, 'error.html', status=404)
+        
     except Portafolio.DoesNotExist:
-        return render(request, 'portafolio.html', {
-            'acciones_portafolio': [],
-            'mensaje': 'No tienes un portafolio aún.',
-        })
+        try:
+            return render(request, 'portafolio.html', {
+                'acciones_portafolio': [],
+                'mensaje': 'No tienes un portafolio aún.',
+            })
+        except TemplateDoesNotExist:
+            return render(request, 'error.html', status=404)
 
 def get_consolidacion(portafolio):
     acciones_portafolio = portafolio.obtener_acciones()

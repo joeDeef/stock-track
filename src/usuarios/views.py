@@ -5,16 +5,26 @@ from django.contrib.auth import authenticate, login
 from portafolio.models import Portafolio
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
+from django.template import TemplateDoesNotExist
 
 def get_login(request):
-    return render(request, 'login.html')
-
+    try:
+        return render(request, 'login.html')
+    except TemplateDoesNotExist:
+        return render(request, 'error.html', status=404)
+    
 def nosotros(request):
-    return render(request, 'nosotros.html')
-
+    try:
+        return render(request, 'nosotros.html')
+    except TemplateDoesNotExist:
+        return render(request, 'error.html', status=404)
+    
 def get_signup(request):
-    return render(request, 'registrar.html')
-
+    try:
+        return render(request, 'registrar.html')
+    except TemplateDoesNotExist:
+        return render(request, 'error.html', status=404)
+    
 def authenticate_user(request, email, password):
     return authenticate(request, username=email, password=password)
 
@@ -70,8 +80,11 @@ def crear_cuenta(request):
 
 @login_required
 def perfil(request):
-    return render(request, 'perfil.html', {'usuario': request.user})
-
+    try:
+        return render(request, 'perfil.html', {'usuario': request.user})
+    except TemplateDoesNotExist:
+        return render(request, 'error.html', status=404)
+    
 def update_perfil(request):
     if request.method == 'POST':
         usuario = request.user
