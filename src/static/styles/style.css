@@ -1,16 +1,15 @@
 /* Fonts */
-@font-face {
-    font-family: 'MontserratBold';
-    src: url('../fonts/Montserrat-Bold.otf') format('opentype');
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap');
 
-@font-face {
-    font-family: 'SFUIDisplayLight';
-    src: url('../fonts/sf-ui-display-light.otf') format('opentype');
-}
 
 #body-comprar {
     overflow: hidden;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+
 }
 
 #btn-comprar {
@@ -114,32 +113,32 @@ body {
 
 /* Fuentes */
 h2 {
-    font-family: 'MontserratBold';
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 40px;
 }
 
 h3 {
-    font-family: 'MontserratBold';
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 19px;
 }
 
 .letra-mediana {
-    font-family: 'MontserratBold';
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 19px;
 }
 
 .letra-normal {
-    font-family: 'MontserratBold';
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 14px;
 }
 
 p {
-    font-family: 'SFUIDisplayLight';
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 16px;
 }
 
 a {
-    font-family: 'MontserratBold';
+    font-family: 'Nunito Sans', sans-serif;
     font-size: 14px;
     text-decoration: none;
 }
@@ -170,7 +169,7 @@ a {
     /* Gradiente */
 }
 
-.label_formulario{
+.label_formulario {
     color: #707070;
     font-size: 18px;
     font-family: 'Nunito Sans', sans-serif;
@@ -185,20 +184,22 @@ a {
 }
 
 .form-group {
-    display: flex; 
-    align-items:center;
+    display: flex;
+    align-items: center;
     margin-bottom: 15px;
     width: 600px;
     transition: transform 0.3s ease;
-   
+
 }
 
 .form-group.shifted {
-    transform: translateX(-42px); /* Desplaza el contenedor a la derecha */
+    transform: translateX(-42px);
+    /* Desplaza el contenedor a la derecha */
 }
 
 .form-group label {
-    width: 100px; /* Ajusta el ancho de la etiqueta según sea necesario */
+    width: 100px;
+    /* Ajusta el ancho de la etiqueta según sea necesario */
     margin-right: 10px;
 
 }
@@ -588,33 +589,30 @@ header {
 
 .campo {
     display: flex;
+    height: 60px;
     align-items: center;
     justify-content: end;
+
+
 }
 
 .input-compra {
-
-
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     width: 425px;
-    margin-right: 50px;
+    margin-right: 80px;
     /* Cambia este valor a la posición deseada en X */
-
     display: block;
     /* Asegura que cada input esté en una nueva línea */
 }
 
 .etiqueta {
-    font-size: 14px;
+    font-size: 18px;
 
     padding: 10px;
-    width: 125px;
-    display: inline-block;
-    font-family: Arial, sans-serif;
 
+    display: inline-block;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 
@@ -658,6 +656,7 @@ header {
 
 /* Contenedor de la tabla a la derecha */
 .acciones-disponibles {
+    justify-content: center;
     margin-left: auto;
     /* Empuja la tabla hacia la derecha */
     margin-right: 50px;
@@ -669,6 +668,7 @@ header {
 
 /* Tabla */
 .tabla-acciones {
+    justify-content: center;
     width: 100%;
     border-collapse: collapse;
     background-color: #2d2d2f;
@@ -676,8 +676,15 @@ header {
     border-radius: 8px;
     /* Bordes redondeados */
     color: white;
-    font-family: 'MontserratBold', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     /* Usar la misma fuente que el resto de la página */
+}
+
+.tabla-acciones th, .tabla-acciones td {
+    text-align: left;
+    padding: 8px;
+    height: 40px;
+    /* Altura fija para las filas */
 }
 
 /* Cabeceras de la tabla */
@@ -687,7 +694,7 @@ header {
     background-color: #3193e2;
     /* Color primario de la página */
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -696,13 +703,42 @@ header {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #707070;
-    /* Línea divisoria sutil */
-    font-size: 14px;
+    font-size: 16px;
 }
 
 /* Efecto hover */
 .tabla-acciones tr:hover {
     background-color: #3b4561;
-    /* Color más claro al pasar el ratón */
     cursor: pointer;
 }
+
+.selected {
+    border-bottom: 3px solid #3193e2; /* Cambia el color y grosor según tus necesidades */
+}
+
+.tabla-acciones img {
+    max-height: 40px;
+    /* Ajusta la altura máxima de las imágenes */
+    width: auto;
+}
+
+@media (max-width: 1919px) {
+    .tabla-acciones img {
+        max-height: 20px;
+        /* Ajusta la altura máxima de las imágenes en pantallas pequeñas */
+    }
+    .tabla-acciones th, .tabla-acciones td {
+        height: 20px;
+
+    }
+    .input-compra {
+        width: 325px;
+
+    }
+
+    .selected {
+        border-bottom: 2px solid #3193e2; /* Cambia el color y grosor según tus necesidades */
+    }
+
+}
+

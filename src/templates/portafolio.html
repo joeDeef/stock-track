@@ -8,6 +8,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <link rel="stylesheet" href="{% static 'styles/portafolio.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -27,8 +29,8 @@
 
         <div id="sorting-and-toggle" style="display: flex; align-items: center; margin: 20px 50px;">
             <div id="sorting-options" class="sorting-options" style="margin-right: 10px; display: flex; align-items: center;">
-                <label for="sort-by" style="margin-right: 10px; font-family: 'MontserratBold'; color: #aaaaab;">Ordenar por:</label>
-                <select id="sort-by" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'SFUIDisplayLight';">
+                <label for="sort-by" style="margin-right: 10px; font-family: 'Nunito Sans', sans-serif; color: #aaaaab;">Ordenar por:</label>
+                <select id="sort-by" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'Nunito Sans', sans-serif; font-size: 15px;">
                     <option value="">Seleccionar...</option>
                     <option value="nombre-asc">Nombre (Ascendente)</option>
                     <option value="nombre-desc">Nombre (Descendente)</option>
@@ -37,10 +39,20 @@
                 </select>
             </div>
         
-            <button id="toggleConsolidar" style="padding: 10px 30px; font-family: 'SFUIDisplayLight'; border: none; background-color: #3193e2; color: white; cursor: pointer; margin-left: 10px;">
+            <button id="toggleConsolidar">
+                <img src="{% static 'img/consolidar.png' %}" alt="icono" style="vertical-align: middle; margin-right: 5px; width: 30px; height: 30px;">
                 Consolidar
             </button>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var filas = document.querySelectorAll('.tabla-portafolio tr');
+                filas.forEach(function(fila, index) {
+                    fila.style.setProperty('--animation-delay', `${index * 0.15}s`);
+                });
+            });
+        </script>
         
 
         {% if mensaje %}
@@ -95,7 +107,7 @@
         </table>
 
         <!-- Consolidado -->
-        <div style="display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start;">
             <table class="tabla-portafolio" id="tabla-consolidada" style="display: none; margin-left: 60px;">
                 <thead>
                     <tr>
@@ -137,7 +149,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <div style="width: 70%;" id="chart-container">
+            <div class="grafica_acciones" id="chart-container">
                 <canvas id="accionesChart"></canvas>
             </div>
         </div>
@@ -145,6 +157,10 @@
         {% endif %}
 
     </div>
+
+     <script>
+        var consolidarImg = "{% static 'img/consolidar.png' %}";
+    </script>
 
     {% include 'mensajes.html' %}
     <script src="{% static 'js/mensajes.js' %}"></script>
@@ -183,19 +199,33 @@
                     chartContainer.hide();
                     tablaOriginal.show();
                     sortingOptions.show();
-                    $(this).text('Consolidar');
+                    $(this).html('<img src="' + consolidarImg + '" alt="icono" style="vertical-align: middle; margin-right: 5px; width: 30px; height: 30px;"> Consolidar');
+                    $(this).css({
+                        'border': 'none', 
+                        'background-color': '', 
+                        'padding': '', 
+                        'border-radius': '', 
+                        'font-size': '', 
+                        'font-weight': '', 
+                        'letter-spacing': '' 
+                    });
                 } else {
                     tablaOriginal.hide();
                     chartContainer.show();
                     tablaConsolidada.show();
                     sortingOptions.hide();
-                    $(this).text('Restaurar');
+                    $(this).html('<img src="' + consolidarImg + '" alt="icono" style="vertical-align: middle; margin-right: 5px; width: 30px; height: 30px;"> Restaurar');
+                    $(this).css({
+                        'border': '2px solid #3193e2',
+                        'background-color': 'transparent',
+                        'padding': '5px 10px'
+                    });
                 }
             });
 
             function renderChart() {
                 var ctx = document.getElementById('accionesChart').getContext('2d');
-                const acciones =  {{ acciones_consolidadas|safe }};
+                const acciones = {{ acciones_consolidadas|safe }};
                 if (acciones.length === 0) {
                     $('#chart-container').hide();
                     return;
@@ -215,17 +245,20 @@
                         datasets: [{
                             data: cantidades,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                                'rgba(255, 99, 132, 1.0)',
+                                'rgba(54, 162, 235, 1.0)',
+                                'rgba(255, 206, 86, 1.0)',
+                                'rgba(75, 192, 192, 1.0)',
+                                'rgba(153, 102, 255, 1.0)',
+                                'rgba(255, 159, 64, 1.0)',
+                                'rgba(100, 181, 246, 1.0)',
+                                'rgba(165, 214, 167, 1.0)',
+                                'rgba(255, 138, 101, 1.0)',
+                                'rgba(244, 143, 177, 1.0)'
                             ],
-                            borderColor: [
-                                'rgba(255, 255, 255, 1)',
-                            ],
-                            borderWidth: 3
+                            borderColor: 'rgba(255, 255, 255, 1)',
+                            borderWidth: 2,
+                            hoverOffset: 35
                         }]
                     },
                     options: {
@@ -233,7 +266,27 @@
                         maintainAspectRatio: false,
                         plugins: {
                             legend: {
-                                position: 'bottom' 
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    },
+                                    color: 'white',
+                                    padding: 20 // Aumenta la separación entre los elementos de la leyenda y la gráfica
+                                },
+                                title: {
+                                    display: true,
+                                    
+                                    color: 'white',
+                                    font: {
+                                        size: 16,
+                                        weight: 'bold'
+                                    }
+                                },
+                                backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+                                borderColor: 'rgba(255, 255, 255, 0.5)', 
+                                borderWidth: 1,
+                                padding: 10
                             },
                             tooltip: {
                                 callbacks: {
@@ -243,9 +296,28 @@
                                         var total = context.dataset.data.reduce((a, b) => a + b, 0);
                                         var percentage = ((value / total) * 100).toFixed(2);
                                         var precioCompra = precios[context.dataIndex];
-                                        return `${value} acciones,  \$${precioCompra}, ${percentage}%`;
+                                        return `${value} acciones, \$${precioCompra}, ${percentage}%`;
                                     }
-                                }
+                                },
+                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                                titleFont: {
+                                    size: 16
+                                },
+                                bodyFont: {
+                                    size: 14
+                                },
+                                footerFont: {
+                                    size: 12
+                                },
+                                footerColor: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        },
+                        layout: {
+                            padding: {
+                                left: 10,
+                                right: 10,
+                                top: 50,
+                                bottom: 50 // Aumenta el margen inferior para separar más la leyenda de la gráfica
                             }
                         }
                     }
