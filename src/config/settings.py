@@ -40,7 +40,10 @@ BASE_APPS = [
 ]
 
 LOCAL_APPS = [
-
+    'main',  # Registramos la aplicación
+    'usuarios',
+    'compras',
+    'portafolio',
 ]
 
 THIRD_APPS = [
@@ -64,7 +67,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],  # Carpeta "templates" en la raíz del proyecto
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -121,13 +123,18 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Esto debe apuntar a la carpeta "static" en tu proyecto
+]
 
-STATIC_URL = 'static/'
+# Directorio donde se recopilan los archivos estáticos para producción
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+AUTH_USER_MODEL = 'usuarios.UsuarioPersonalizado'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTHENTICATION_BACKENDS = [
+    'usuarios.backends.EmailAuthBackend', 
+    'django.contrib.auth.backends.ModelBackend', 
+]

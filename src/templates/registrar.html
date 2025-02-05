@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %} <!-- Cargamos las etiquetas estáticas -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="container-info d-flex">
+        <!-- Columna Izquierda: Formulario de Login -->
+        <div id="imagen-registrar" class="imagen-login">
+            <img src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
+        </div>
+        <!-- Columna Derecha: Imagen -->
+        <div class="info-login d-flex flex-column color-terciario">
+            <div class="logo-completo"></div>
+            <h2 class="pb-3 color-basico-fw">Registro</h2>
+            <form class="flex-column pb-1" method="post" action="{% url 'usuarios:crearCuenta' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nombre_id" class="color-basico-fw label_formulario">Nombre</label>
+                    <input name="nombre" id="nombre_id" class="input-registro" placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                    <label for="email_id" class="color-basico-fw label_formulario">Email</label>
+                    <input type="email" name="email" id="email_id" class="input-registro" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="telefono_id" class="color-basico-fw label_formulario">Teléfono</label>
+                    <input name="telefono" id="telefono_id" class="input-registro" placeholder="Telefono">
+                </div>
+                <div class="form-group">
+                    <label for="password_id" class="color-basico-fw label_formulario">Contraseña</label>
+                    <input type="password" name="password" id="password_id" class="input-registro"
+                        placeholder="Contraseña">
+                </div>
+
+                <div>
+                    <button id="boton-registrar" type="submit" class="boton color-primario">Crear Cuenta</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.input-registro');
+            inputs.forEach(input => {
+                const label = input.previousElementSibling;
+                if (input.value === '') {
+                    label.classList.add('hidden');
+                }
+                input.addEventListener('input', function () {
+                    if (input.value === '') {
+                        label.classList.add('hidden');
+                    } else {
+                        label.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.input-registro');
+            inputs.forEach(input => {
+                const formGroup = input.closest('.form-group');
+                if (input.value === '') {
+                    formGroup.classList.add('shifted');
+                }
+                input.addEventListener('input', function () {
+                    if (input.value === '') {
+                        formGroup.classList.add('shifted');
+                    } else {
+                        formGroup.classList.remove('shifted');
+                    }
+                });
+            });
+        });
+    </script>
+
+    {% include 'mensajes.html' %}
+
+    <script src="{% static 'js/mensajes.js' %}"></script>
+
+</body>
+
+</html>

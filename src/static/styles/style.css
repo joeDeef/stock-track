@@ -1,0 +1,744 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap');
+
+
+#body-comprar {
+    overflow: hidden;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+
+}
+
+#btn-comprar {
+    border: none;
+    margin-left: 15%;
+    margin-top: 2%;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    width: 210px;
+    background-color: #3193e2;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.5s;
+    font-size: 20px;
+}
+
+#titulo-portada {
+    font-size: 2em;
+    /* Tamaño de fuente inicial */
+    text-align: left;
+    /* Centrar el texto */
+}
+
+#mi-parrafo-especifico {
+
+    font-size: 2em;
+    text-align: left;
+    padding-right: 90px;
+    padding-left: 40px;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 1366px) {
+    #titulo-portada {
+        font-size: 1.8em;
+        /* Reducir el tamaño de la fuente */
+    }
+
+    #mi-parrafo-especifico {
+        font-size: 1.2em;
+        /* Reducir el tamaño de la fuente */
+    }
+}
+
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1370px) {
+    #titulo-portada {
+        font-size: 3em;
+        /* Aumentar el tamaño de la fuente */
+    }
+
+    #mi-parrafo-especifico {
+        font-size: 1.8em;
+        /* Aumentar el tamaño de la fuente */
+    }
+}
+
+
+/* Estilos base para los botones */
+#boton-registro {
+    border: 2px solid white;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.5s;
+}
+
+/* Media queries para pantallas más grandes */
+@media (min-width: 1370px) {
+
+    #boton-login1,
+    #boton-registro {
+        padding: 12px 50px;
+        /* Aumentar el tamaño del padding */
+        margin-right: 25px;
+        /* Aumentar el margen izquierdo */
+        font-size: 1.2em;
+        /* Aumentar el tamaño de la fuente */
+    }
+
+    #boton-login1 a,
+    #boton-registro a {
+
+        /* Aumentar el tamaño de la fuente */
+    }
+}
+
+
+/* Preset */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0
+}
+
+/* Fuentes */
+h2 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 40px;
+}
+
+h3 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 19px;
+}
+
+.letra-mediana {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 19px;
+}
+
+.letra-normal {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+}
+
+p {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+}
+
+a {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.mayusculas {
+    text-transform: uppercase;
+}
+
+/* Colores */
+.color-primario {
+    background-color: #3193e2;
+}
+
+.color-secundario {
+    background-color: #d8d8d8;
+}
+
+.color-terciario {
+    background-color: #110f1c;
+}
+
+.color-cuatro {
+    background-color: #2d2d2f;
+}
+
+.color-doble {
+    background: linear-gradient(160deg, #110f1c, #3b4561);
+    /* Gradiente */
+}
+
+.label_formulario {
+    color: #707070;
+    font-size: 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: opacity 1.8s ease;
+    width: 150px;
+    text-align: left;
+}
+
+.label_formulario.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 600px;
+    transition: transform 0.3s ease;
+
+}
+
+.form-group.shifted {
+    transform: translateX(-42px);
+    /* Desplaza el contenedor a la derecha */
+}
+
+.form-group label {
+    width: 100px;
+    /* Ajusta el ancho de la etiqueta según sea necesario */
+    margin-right: 10px;
+
+}
+
+.form-group input {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/*fuentes*/
+.color-primario-fuente {
+    color: #176FA6;
+}
+
+.color-secundario-fuente {
+    color: #707070;
+}
+
+.color-terciario-fuente {
+    color: #d8d8d8;
+    font-size: 35px;
+    text-align: left;
+    padding-right: 0px;
+    padding-left: 40px;
+}
+
+.color-basico-fb {
+    color: black;
+}
+
+.color-basico-fw {
+    color: rgb(255, 255, 255);
+}
+
+/*tamaño fuentes*/
+.f-b {
+    font-size: 16px;
+    ;
+}
+
+.f-xb {
+    font-size: 22px;
+}
+
+/* Espaciados */
+.pt-1 {
+    padding-top: 10px;
+}
+
+.ptb-1 {
+    padding: 10px 0;
+}
+
+.pb-1 {
+    padding-bottom: 10px;
+}
+
+.pl-1 {
+    padding-left: 10px;
+}
+
+.pr-1 {
+    padding-right: 10px;
+}
+
+.pa-1 {
+    padding: 10px 10px;
+}
+
+.gap-1 {
+    gap: 10px;
+}
+
+.pt-3 {
+    padding-top: 30px;
+}
+
+.pb-3 {
+    padding-bottom: 30px;
+}
+
+.pt-3 {
+    padding-top: 30px;
+}
+
+.pl-5 {
+    padding-left: 50px;
+}
+
+.pa-5 {
+    padding: 50px;
+}
+
+.pt-5 {
+    padding-top: 50px;
+}
+
+/* Disposiciones */
+.t-centrado {
+    text-align: center;
+}
+
+.t-derecha {
+    text-align: right;
+}
+
+/* Display */
+.d-flex {
+    display: flex;
+}
+
+.d-ib {
+    display: inline-block;
+}
+
+.justify-sb {
+    justify-content: space-between;
+}
+
+/* Float */
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+/* Bordes */
+.borde-1 {
+    border: 1.5px solid black;
+}
+
+/* Header */
+header {
+    height: 50px;
+}
+
+.barra {
+    align-items: center;
+    height: 100%;
+}
+
+.barra ul {
+    list-style-type: none;
+}
+
+
+/* Recuadros y Cartas */
+.logo {
+    width: 50px;
+    height: 44px;
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% auto;
+    margin: 0 auto;
+}
+
+.logo-completo {
+    height: 250px;
+    width: 300px;
+    background-image: url(../img/finac-blanco.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% auto;
+    margin: 0 auto;
+}
+
+.logo-completo-black {
+    height: 300px;
+    width: 300px;
+    background-image: url(../img/finac-negro.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% auto;
+    margin: 0 auto;
+}
+
+
+.boton {
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    width: 110px;
+}
+
+
+
+#boton-registro:hover {
+    background-color: white;
+}
+
+#boton-registro a {
+    color: white;
+    /* Color del texto en blanco */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.5s;
+    /* Suaviza el cambio de color del texto */
+}
+
+#boton-registro:hover a {
+    color: black;
+}
+
+#boton-crear-cuenta {
+    border: 2px solid rgb(0, 0, 0);
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.5s;
+}
+
+#boton-crear-cuenta:hover {
+    background-color: rgba(0, 0, 0, 0.836);
+}
+
+#boton-crear-cuenta a {
+    color: rgb(0, 0, 0);
+    /* Color del texto en blanco */
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.5s;
+    /* Suaviza el cambio de color del texto */
+}
+
+#boton-crear-cuenta:hover a {
+    color: rgb(255, 255, 255);
+}
+
+#boton-registrar {
+    margin-top: 30px;
+    border: none;
+    width: 150px;
+    font-size: 18px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+
+#boton-registrar:hover {
+    background-color: transparent;
+    border: 2px solid #176FA6;
+}
+
+#boton-iniciar-sesion {
+    margin-top: 30px;
+    border: none;
+    width: 150px;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+
+#boton-iniciar-sesion span {
+    font-size: 18px;
+}
+
+#boton-iniciar-sesion:hover {
+    background-color: transparent;
+    border: 2px solid #176FA6;
+}
+
+.card {
+    width: 180px;
+    border: 1px solid #707070;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.circulo {
+    border-radius: 50%;
+    background-image: url(../img/usuario.png);
+    background-position: 50%;
+    background-size: 100% auto;
+    margin: 0px auto;
+    border-radius: 50%;
+}
+
+
+/* Sección Principal */
+.info-texto {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.info-imagen {
+    display: flex;
+    justify-content: center;
+    /* Centra la imagen dentro del contenedor */
+    align-items: center;
+    /* Centra la imagen verticalmente */
+    animation: mover-der-izq 1s ease-in-out;
+}
+
+@keyframes mover-der-izq {
+    from {
+        transform: translateX(100%);
+        /* Inicia fuera de la pantalla hacia arriba */
+    }
+
+    to {
+        transform: translateY(0);
+        /* Termina en su posición original */
+    }
+}
+
+.info-login {
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.info-compra {
+    width: 50%;
+    width: auto;
+}
+
+#imagen-login1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente la imagen */
+    align-items: center;
+    /* Centra la imagen verticalmente */
+    animation: moveIn 1s ease-in-out;
+}
+
+#imagen-contenedor {
+    width: 50%;
+    background-color: #110f1c;
+
+}
+
+#imagen-registrar {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente la imagen */
+    align-items: center;
+    /* Centra la imagen verticalmente */
+    animation: mover-der-izq 1s ease-in-out;
+    z-index: 10;
+}
+
+@keyframes moveIn {
+    from {
+        transform: translateX(-100%);
+        /* Inicia fuera de la pantalla hacia arriba */
+    }
+
+    to {
+        transform: translateY(0);
+        /* Termina en su posición original */
+    }
+}
+
+
+
+
+/* Contenedor Principal */
+.container-info {
+    width: 100%;
+    height: 100vh;
+    /* Ocupa toda la altura de la pantalla */
+}
+
+.container-compra {
+    width: 100%;
+    height: 100vh;
+    /* Ocupa toda la altura de la pantalla */
+}
+
+
+.campo {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: end;
+
+
+}
+
+.input-compra {
+    padding: 10px;
+    border-radius: 5px;
+    width: 425px;
+    margin-right: 80px;
+    /* Cambia este valor a la posición deseada en X */
+    display: block;
+    /* Asegura que cada input esté en una nueva línea */
+}
+
+.etiqueta {
+    font-size: 18px;
+
+    padding: 10px;
+
+    display: inline-block;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+
+
+
+/* Columna Derecha: Imagen */
+.imagen-pantalla {
+    width: 100%;
+    /* La imagen ocupa el 80% del contenedor */
+    height: 100%;
+    /* Mantiene proporciones */
+}
+
+/* Animaciones */
+
+.mensaje {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    font-size: 16px;
+    display: none;
+}
+
+/* Estilo para el mensaje de éxito */
+.mensaje.success {
+    background-color: #4CAF50;
+    /* Verde */
+    color: white;
+}
+
+/* Estilo para el mensaje de error */
+.mensaje.error {
+    background-color: #f44336;
+    /* Rojo */
+    color: white;
+}
+
+/* Contenedor de la tabla a la derecha */
+.acciones-disponibles {
+    justify-content: center;
+    margin-left: auto;
+    /* Empuja la tabla hacia la derecha */
+    margin-right: 50px;
+    /* Espacio adicional a la derecha si es necesario */
+    color: white;
+    width: 35%;
+    /* Ajuste para que ocupe solo una parte del espacio */
+}
+
+/* Tabla */
+.tabla-acciones {
+    justify-content: center;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2d2d2f;
+    /* Fondo oscuro para la tabla */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    color: white;
+    font-family: 'Nunito Sans', sans-serif;
+    /* Usar la misma fuente que el resto de la página */
+}
+
+.tabla-acciones th, .tabla-acciones td {
+    text-align: left;
+    padding: 8px;
+    height: 40px;
+    /* Altura fija para las filas */
+}
+
+/* Cabeceras de la tabla */
+.tabla-acciones th {
+    padding: 12px;
+    text-align: left;
+    background-color: #3193e2;
+    /* Color primario de la página */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Filas de la tabla */
+.tabla-acciones td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #707070;
+    font-size: 16px;
+}
+
+/* Efecto hover */
+.tabla-acciones tr:hover {
+    background-color: #3b4561;
+    cursor: pointer;
+}
+
+.selected {
+    border-bottom: 3px solid #3193e2; /* Cambia el color y grosor según tus necesidades */
+}
+
+.tabla-acciones img {
+    max-height: 40px;
+    /* Ajusta la altura máxima de las imágenes */
+    width: auto;
+}
+
+@media (max-width: 1919px) {
+    .tabla-acciones img {
+        max-height: 20px;
+        /* Ajusta la altura máxima de las imágenes en pantallas pequeñas */
+    }
+    .tabla-acciones th, .tabla-acciones td {
+        height: 20px;
+
+    }
+    .input-compra {
+        width: 325px;
+
+    }
+
+    .selected {
+        border-bottom: 2px solid #3193e2; /* Cambia el color y grosor según tus necesidades */
+    }
+
+}
+

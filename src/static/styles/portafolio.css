@@ -1,0 +1,143 @@
+body {
+    background-color: #2d2d2f;
+    color: #aaaaab;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.grafica_acciones{
+    flex-grow: 1; 
+    height: 50vh ;
+    width: 50%; 
+    animation: fadeIn 2.5s ease-in-out, grow 3s ease-in-out;
+
+
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.tabla-portafolio {
+    width: 90%; /* Reduced width to make space for the pie chart */
+    margin: 20px auto; /* Center the table and add top and bottom margins */
+    padding: 20px; /* Internal spacing of the table */
+    border-collapse: collapse;
+    background-color: transparent;
+    color: #b9b9b9;
+    border-radius: 8px; /* Opcional: bordes redondeados */
+     /* Opcional: sombra para resaltar la tabla */
+}
+
+.tabla-portafolio th, .tabla-portafolio td {
+    padding: 12px;
+    text-align: center; /* Center the table elements */
+    border: none;
+}
+
+.tabla-portafolio th {
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.tabla-portafolio td {
+    background-color: transparent;
+}
+
+.tabla-portafolio tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tabla-portafolio tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tabla-portafolio tr {
+    border-bottom: 1px solid #444;
+}
+
+.tabla-portafolio td span {
+    font-weight: bold;
+    color: inherit;
+}
+
+.tabla-portafolio .ganancia {
+    color: green;
+}
+
+.tabla-portafolio .perdida {
+    color: red;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0 10%;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .left {
+    text-align: left;
+}
+
+.header .right {
+    text-align: right;
+}
+
+#toggleConsolidar {
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    border: none;
+    background-color: #3193e2;
+    color: white; 
+    cursor: pointer; 
+    margin-left: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+}
+
+
+@keyframes slideInFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.tabla-portafolio tr {
+    opacity: 0; 
+    animation: slideInFadeIn 1s ease-in-out forwards;
+    animation-delay: var(--animation-delay);
+}
+

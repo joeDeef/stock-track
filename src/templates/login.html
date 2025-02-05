@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %} <!-- Cargamos las etiquetas estáticas -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <section class="container-info d-flex">
+        <!-- Columna Izquierda: Formulario de Login -->
+        <div class="info-login d-flex flex-column">
+            <div class="logo-completo-black"></div>
+            <h2 class="pb-3">Iniciar Sesión</h2>
+
+            <form method="post" action="{% url 'usuarios:iniciarSesion' %}" class="flex-column pb-1">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email_id" class="color-basico-fw label_formulario" style="color: black;">Email</label>
+                    <input type="email" name="email" id="email_id" class="input-login" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password_id" class="color-basico-fw label_formulario"
+                        style="color: black;">Contraseña</label>
+                    <input type="password" name="password" id="password_id" class="input-login" placeholder="Contraseña"
+                        required>
+                </div>
+                <button id="boton-iniciar-sesion" type="submit" class="boton color-primario color-basico-fw pa-1">
+                    <span class="color-basico-fb f-b">Ingresar</span>
+                </button>
+            </form>
+
+        </div>
+
+        <!-- Columna Derecha: Imagen -->
+        <div id="imagen-contenedor" class="imagen-login">
+            <img id="imagen-login1" src="{% static 'img/imagen.png' %}" alt="Pantalla" class="imagen-pantalla">
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.input-login');
+            inputs.forEach(input => {
+                const label = input.previousElementSibling;
+                if (input.value === '') {
+                    label.classList.add('hidden');
+                }
+                input.addEventListener('input', function () {
+                    if (input.value === '') {
+                        label.classList.add('hidden');
+                    } else {
+                        label.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('.input-login');
+            inputs.forEach(input => {
+                const formGroup = input.closest('.form-group');
+                if (input.value === '') {
+                    formGroup.classList.add('shifted');
+                }
+                input.addEventListener('input', function () {
+                    if (input.value === '') {
+                        formGroup.classList.add('shifted');
+                    } else {
+                        formGroup.classList.remove('shifted');
+                    }
+                });
+            });
+        });
+    </script>
+
+    {% include 'mensajes.html' %}
+
+    <script src="{% static 'js/mensajes.js' %}"></script>
+
+</body>
+
+</html>
